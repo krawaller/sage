@@ -1,4 +1,4 @@
-import { SagePlugin } from '../plugins/pluginTypes'
+import { SagePlugin } from '../plugins'
 import { processDirectory } from './processDirectory'
 import { getSourceMetaData } from './getSourceMetaData'
 

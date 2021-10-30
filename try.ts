@@ -1,9 +1,6 @@
 import fs from 'fs-extra'
 import path from 'path'
-import { codePlugin } from './sage/plugins/code'
-import { graphPlugin } from './sage/plugins/graph'
-import { markdownPlugin } from './sage/plugins/markdown'
-import { processSource } from './sage/processSource'
+import { codePlugin, graphPlugin, markdownPlugin, processSource } from './sage'
 
 const seed = path.join(__dirname, 'seed')
 const plugins = [graphPlugin, codePlugin, markdownPlugin]

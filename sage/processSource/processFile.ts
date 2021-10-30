@@ -1,5 +1,5 @@
 import fs from 'fs-extra'
-import { SagePlugin } from '../plugins/pluginTypes'
+import { SagePlugin } from '../plugins'
 import { getFileDescription } from './getFileDescription'
 import { getFileMetaData } from './getFileMetaData'
 import { ProcessFileOutput } from './processTypes'
