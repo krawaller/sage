@@ -1,0 +1,8 @@
+digraph "G" {
+  graph [ label = "Example" ];
+  node [ color = "blue", shape = Mdiamond ];
+  edge [ color = "red", label = "  Say" ];
+  "Hello";
+  "Worlddd";
+  "Hello" -> "Worlddd";
+}
