@@ -1,6 +1,6 @@
 export type ProcessorInput<M extends Record<string, any> = {}> = {
   content: string
-  fileName: string
+  filePath: string
   meta: Record<string, any>
 }
 
