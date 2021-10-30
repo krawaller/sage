@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import { processDirectory } from './processDirectory'
 import { processFile } from './processFile'
-import { SagePlugin } from '../types'
+import { SagePlugin } from '../plugins/pluginTypes'
 import { ProcessFileOutput } from './processTypes'
 
 type ProcessPathInput = {

@@ -1,4 +1,4 @@
-import { SagePlugin } from '../../types'
+import { SagePlugin } from '../pluginTypes'
 import { codeProcessor } from './code-processor'
 
 export const codePlugin: SagePlugin<string> = {

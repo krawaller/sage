@@ -1,5 +1,5 @@
 import marked from 'marked'
-import { Processor } from '../../types'
+import { Processor } from '../pluginTypes'
 
 export const markdownProcessor: Processor<string> = async (input) => {
   const { content, filePath, meta } = input

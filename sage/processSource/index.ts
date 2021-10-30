@@ -1,4 +1,4 @@
-import { SagePlugin } from '../types'
+import { SagePlugin } from '../plugins/pluginTypes'
 import { processDirectory } from './processDirectory'
 
 type ProcessDirectoryInput = {
