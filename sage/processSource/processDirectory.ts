@@ -7,7 +7,7 @@ import { getFolderContent } from './getFolderContent'
 import { getFolderMetaData } from './getFolderMetaData'
 
 type ProcessDirectoryInput = {
-  plugins: SagePlugin[]
+  plugins: Record<string, SagePlugin>
   root: string
   dirPath: string
 }

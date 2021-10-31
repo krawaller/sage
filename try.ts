@@ -9,7 +9,11 @@ const plugins = [graphPlugin, codePlugin, markdownPlugin]
   console.log('LETS SEE...')
   const result = await processSource({
     sourcePath: seed,
-    plugins,
+    plugins: {
+      code: codePlugin,
+      graph: graphPlugin,
+      markdown: markdownPlugin,
+    },
   })
   fs.writeFile('try.results.json', JSON.stringify(result, null, 2))
   console.log('WEE!')

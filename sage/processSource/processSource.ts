@@ -2,7 +2,7 @@ import { SagePlugin } from '../plugins'
 import { processDirectory } from './processDirectory'
 
 type ProcessSourceInput = {
-  plugins: SagePlugin[]
+  plugins: Record<string, SagePlugin>
   sourcePath: string
 }
 

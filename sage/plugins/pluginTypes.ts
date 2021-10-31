@@ -9,6 +9,5 @@ export type Processor<P = any, M extends Record<string, any> = {}> = (
 ) => Promise<P>
 
 export type SagePlugin<P = any, M extends Record<string, any> = {}> = {
-  id: string
   processor: Processor<P, M>
 }

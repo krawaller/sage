@@ -5,7 +5,7 @@ import { getFileMetaData } from './getFileMetaData'
 import { ProcessFileOutput } from './processTypes'
 
 type ProcessFileInput = {
-  plugins: SagePlugin[]
+  plugins: Record<string, SagePlugin>
   filePath: string
   root: string
 }
@@ -16,7 +16,7 @@ export const processFile = async (
   const { plugins, filePath, root } = input
   const fileData = getFileDescription(filePath, root)
   const { type } = fileData
-  const plugin = plugins.find((p) => p.id === type)
+  const plugin = plugins[type]
   if (!plugin) {
     throw new Error(`No plugin to handle file ${filePath}`)
   }
