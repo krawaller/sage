@@ -1,0 +1,32 @@
+{
+  "root": {
+    "type": "root",
+    "kind": "folder",
+    "path": "root",
+    "short": "root"
+  },
+  "code.foo.ts": {
+    "type": "file",
+    "kind": "code",
+    "path": "code.foo.ts",
+    "short": "FooCode"
+  },
+  "hurp": {
+    "type": "folder",
+    "kind": "folder",
+    "path": "hurp",
+    "short": "hurp"
+  },
+  "graph.fnerp.dot": {
+    "type": "file",
+    "kind": "graph",
+    "path": "hurp_graph.fnerp.dot",
+    "short": "fnerp"
+  },
+  "markdown.meep.md": {
+    "type": "file",
+    "kind": "markdown",
+    "path": "hurp_markdown.meep.md",
+    "short": "meep"
+  }
+}

@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { processSource } from './sage'
-import config from './sage.config'
+import config from './sage.process.config'
 
 const seed = path.join(__dirname, 'seed')
 
@@ -12,5 +12,6 @@ const seed = path.join(__dirname, 'seed')
     plugins: config.processors,
   })
   fs.writeFile('try.results.json', JSON.stringify(result, null, 2))
+  fs.writeFile('sage.link-map.json', JSON.stringify(result.links, null, 2))
   console.log('WEE!')
 })()
