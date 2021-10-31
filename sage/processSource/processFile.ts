@@ -33,7 +33,6 @@ export const processFile = async (
   return {
     ...fileData,
     meta,
-    content,
     processed,
   }
 }
