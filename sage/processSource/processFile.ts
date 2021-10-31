@@ -15,8 +15,8 @@ export const processFile = async (
 ): Promise<ProcessFileOutput> => {
   const { plugins, filePath, root } = input
   const fileData = getFileDescription(filePath, root)
-  const { type } = fileData
-  const plugin = plugins[type]
+  const { kind } = fileData
+  const plugin = plugins[kind]
   if (!plugin) {
     throw new Error(`No plugin to handle file ${filePath}`)
   }
