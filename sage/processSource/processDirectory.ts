@@ -1,8 +1,10 @@
 import path from 'path'
-import fs from 'fs-extra'
-import { processPath } from './processPath'
 import { SagePlugin } from '../plugins'
-import { ProcessFileOutput } from './processTypes'
+import { ProcessDirectoryOutput } from './processTypes'
+import { processFile } from './processFile'
+import { getFolderDescription } from './getFolderDescription'
+import { getFolderContent } from './getFolderContent'
+import { getFolderMetaData } from './getFolderMetaData'
 
 type ProcessDirectoryInput = {
   plugins: SagePlugin[]
@@ -12,11 +14,27 @@ type ProcessDirectoryInput = {
 
 export const processDirectory = async (
   input: ProcessDirectoryInput
-): Promise<ProcessFileOutput[]> => {
+): Promise<ProcessDirectoryOutput> => {
   const { dirPath, plugins, root } = input
-  const list = await fs.readdir(dirPath)
-  const promises = list.flatMap((p) =>
-    processPath({ path: path.join(dirPath, p), plugins, root })
+  const [content, meta] = await Promise.all([
+    getFolderContent(dirPath),
+    getFolderMetaData(dirPath),
+  ])
+  const filePromises = content.files
+    .filter((p) => !p.match(/meta\.json$/))
+    .map((p) => path.join(dirPath, p))
+    .map((filePath) => processFile({ plugins, root, filePath }))
+  const folderPromises = content.folders.map((d) =>
+    processDirectory({ dirPath: path.join(dirPath, d), plugins, root })
   )
-  return (await Promise.all(promises)).flat()
+  const [files, folders] = await Promise.all([
+    Promise.all(filePromises),
+    Promise.all(folderPromises),
+  ])
+  return {
+    ...getFolderDescription(dirPath, root),
+    meta,
+    files,
+    folders,
+  }
 }
