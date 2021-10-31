@@ -29,3 +29,10 @@ export type SageRootPage = Omit<SageFolderPage, 'type'> & {
 }
 
 export type SagePage = SageFilePage | SageFolderPage | SageRootPage
+
+export type SageLink = {
+  short: string
+  path: string
+  type: SagePage['type']
+  kind: string
+}

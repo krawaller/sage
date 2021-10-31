@@ -1,7 +1,8 @@
 import { SagePlugin } from '../plugins'
 import { getFlatList } from './getFlatList'
+import { getLinkRecord } from './getLinkRecord'
+import { getPageRecord } from './getPageRecord'
 import { processDirectory } from './processDirectory'
-import { SagePage } from './processTypes'
 
 type ProcessSourceInput = {
   plugins: Record<string, SagePlugin>
@@ -16,11 +17,10 @@ export const processSource = async (input: ProcessSourceInput) => {
     root: sourcePath,
   })
   const list = getFlatList(tree, true)
-  return list.reduce<Record<string, SagePage>>((memo, page) => {
-    if (memo[page.id]) {
-      throw new Error(`Duplicate pages have identifier "${page.id}"`)
-    }
-    memo[page.id] = page
-    return memo
-  }, {})
+  const pages = getPageRecord(list)
+  const links = getLinkRecord(pages)
+  return {
+    pages,
+    links,
+  }
 }
