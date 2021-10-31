@@ -1,10 +1,10 @@
-export type ProcessFileOutput = {
+export type ProcessFileOutput<P = any> = {
   id: string // will be full filename including kind prefix
   name: string // filename without prefix and extension
   crumbs: string[]
   meta: Record<string, any>
   kind: string
-  processed: any
+  processed: P
 }
 
 export type ProcessDirectoryOutput = {
@@ -15,9 +15,9 @@ export type ProcessDirectoryOutput = {
   folders: ProcessDirectoryOutput[]
 }
 
-export type SageFilePage = {
+export type SageFilePage<P = any> = {
   type: 'file'
-} & ProcessFileOutput
+} & ProcessFileOutput<P>
 
 export type SageFolderPage = {
   type: 'folder'
@@ -28,7 +28,7 @@ export type SageRootPage = Omit<SageFolderPage, 'type'> & {
   type: 'root'
 }
 
-export type SagePage = SageFilePage | SageFolderPage | SageRootPage
+export type SagePage<P = any> = SageFilePage<P> | SageFolderPage | SageRootPage
 
 export type SageLink = {
   short: string
