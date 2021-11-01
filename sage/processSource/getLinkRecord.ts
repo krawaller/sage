@@ -10,7 +10,13 @@ export const getLinkRecord = (
         type: page.type,
         kind: page.type === 'file' ? page.kind : 'folder',
         path:
-          id === 'root' ? '/' : page.crumbs.slice(1).concat(page.id).join('_'),
+          id === 'root'
+            ? '/'
+            : page.crumbs
+                .slice(1)
+                .concat(page.id)
+                .join('_')
+                .replace(/\./g, '_'),
         short:
           page.meta.short || (page.type === 'file' && page.name) || page.id,
       },

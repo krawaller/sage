@@ -8,7 +8,7 @@
   "code.foo.ts": {
     "type": "file",
     "kind": "code",
-    "path": "code.foo.ts",
+    "path": "code_foo_ts",
     "short": "FooCode"
   },
   "hurp": {
@@ -20,13 +20,13 @@
   "graph.fnerp.dot": {
     "type": "file",
     "kind": "graph",
-    "path": "hurp_graph.fnerp.dot",
+    "path": "hurp_graph_fnerp_dot",
     "short": "fnerp"
   },
   "markdown.meep.md": {
     "type": "file",
     "kind": "markdown",
-    "path": "hurp_markdown.meep.md",
+    "path": "hurp_markdown_meep_md",
     "short": "meep"
   }
 }
