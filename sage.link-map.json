@@ -8,25 +8,25 @@
   "code.foo.ts": {
     "type": "file",
     "kind": "code",
-    "path": "code_foo_ts",
+    "path": "/code_foo_ts",
     "short": "FooCode"
   },
   "hurp": {
     "type": "folder",
     "kind": "folder",
-    "path": "hurp",
+    "path": "/hurp",
     "short": "hurp"
   },
   "graph.fnerp.dot": {
     "type": "file",
     "kind": "graph",
-    "path": "hurp_graph_fnerp_dot",
+    "path": "/hurp_graph_fnerp_dot",
     "short": "fnerp"
   },
   "markdown.meep.md": {
     "type": "file",
     "kind": "markdown",
-    "path": "hurp_markdown_meep_md",
+    "path": "/hurp_markdown_meep_md",
     "short": "meep"
   }
 }

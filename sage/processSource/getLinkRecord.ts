@@ -12,7 +12,8 @@ export const getLinkRecord = (
         path:
           id === 'root'
             ? '/'
-            : page.crumbs
+            : '/' +
+              page.crumbs
                 .slice(1)
                 .concat(page.id)
                 .join('_')
