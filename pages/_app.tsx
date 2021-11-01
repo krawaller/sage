@@ -13,8 +13,9 @@ import _sageLinkMap from '../sage.link-map.json'
 const sageLinkMap = _sageLinkMap as Record<string, SageLink>
 
 const SageApp = (props: AppProps) => {
-  const { Component, pageProps } = props
-  const { resource } = Component as unknown as SageComponent // Won't be needed after inlining!
+  const { Component: NextComponent, pageProps } = props
+  const Component = NextComponent as unknown as SageComponent
+  const { resource } = Component
   return (
     <SageLinkMapContext.Provider value={sageLinkMap}>
       <SagePageContext.Provider value={resource}>
@@ -23,7 +24,11 @@ const SageApp = (props: AppProps) => {
             linkMap={sageLinkMap as Record<string, SageLink>}
             resource={resource}
           >
-            <Component {...pageProps} {...resource} linkMap={sageLinkMap} />
+            <Component
+              {...pageProps}
+              resource={resource}
+              linkMap={sageLinkMap}
+            />
           </Shell>
         )}
       </SagePageContext.Provider>

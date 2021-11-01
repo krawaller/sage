@@ -7,18 +7,20 @@ import {
 
 export type SageFolderComponentProps = {
   linkMap: Record<string, SageLink>
-} & SageFolderResource
+  resource: SageFolderResource
+}
 
 export type SageFileComponentProps<P = any> = {
   linkMap: Record<string, SageLink>
-} & SageFileResource<P>
+  resource: SageFileResource<P>
+}
 
 export type SageFolderComponent = ((
   props: SageFolderComponentProps
-) => ReactNode) & { resource: SageFolderResource }
+) => JSX.Element | null) & { resource: SageFolderResource }
 
 export type SageFileComponent<P = any> = ((
   props: SageFileComponentProps<P>
-) => ReactNode) & { resource: SageFileResource }
+) => JSX.Element | null) & { resource: SageFileResource }
 
 export type SageComponent = SageFileComponent | SageFolderComponent

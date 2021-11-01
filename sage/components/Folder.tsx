@@ -3,7 +3,8 @@ import React from 'react'
 import { SageFolderComponentProps } from './componentTypes'
 
 export const Folder = (props: SageFolderComponentProps) => {
-  const { linkMap, contains } = props
+  const { linkMap, resource } = props
+  const { contains } = resource
   return (
     <ul>
       {contains.map((id) => (

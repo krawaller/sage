@@ -4,7 +4,8 @@ import { SageFileComponentProps } from './componentTypes'
 type GraphProps = SageFileComponentProps<string>
 
 export const Graph = (props: GraphProps) => {
-  const { processed } = props
+  const { resource } = props
+  const { processed } = resource
   return <div dangerouslySetInnerHTML={{ __html: processed }}></div>
 }
 

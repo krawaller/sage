@@ -4,7 +4,8 @@ import { SageFileComponentProps } from './componentTypes'
 type MarkdownProps = SageFileComponentProps<string>
 
 export const Markdown = (props: MarkdownProps) => {
-  const { processed } = props
+  const { resource } = props
+  const { processed } = resource
   return <div dangerouslySetInnerHTML={{ __html: processed }}></div>
 }
 
