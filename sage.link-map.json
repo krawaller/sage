@@ -2,7 +2,7 @@
   "root": {
     "type": "root",
     "kind": "folder",
-    "path": "root",
+    "path": "/",
     "short": "root"
   },
   "code.foo.ts": {
