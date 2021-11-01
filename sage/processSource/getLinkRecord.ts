@@ -1,7 +1,7 @@
-import { SageLink, SagePage } from './processTypes'
+import { SageLink, SageResource } from './processTypes'
 
 export const getLinkRecord = (
-  pageMap: Record<string, SagePage>
+  pageMap: Record<string, SageResource>
 ): Record<string, SageLink> => {
   return Object.fromEntries(
     Object.entries(pageMap).map(([id, page]): [string, SageLink] => [

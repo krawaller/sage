@@ -14,13 +14,16 @@ const sageLinkMap = _sageLinkMap as Record<string, SageLink>
 
 const SageApp = (props: AppProps) => {
   const { Component, pageProps } = props
-  const { page } = Component as unknown as SageComponent // Won't be needed after inlining!
+  const { resource } = Component as unknown as SageComponent // Won't be needed after inlining!
   return (
     <SageLinkMapContext.Provider value={sageLinkMap}>
-      <SagePageContext.Provider value={page}>
-        {page && (
-          <Shell linkMap={sageLinkMap as Record<string, SageLink>} page={page}>
-            <Component {...pageProps} {...page} linkMap={sageLinkMap} />
+      <SagePageContext.Provider value={resource}>
+        {resource && (
+          <Shell
+            linkMap={sageLinkMap as Record<string, SageLink>}
+            resource={resource}
+          >
+            <Component {...pageProps} {...resource} linkMap={sageLinkMap} />
           </Shell>
         )}
       </SagePageContext.Provider>

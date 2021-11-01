@@ -8,6 +8,6 @@ import type {
 const HomePage: SageFolderComponent = (props: SageFolderComponentProps) => {
   return <Folder {...props} />
 }
-HomePage.page = require('../try.results.json').pages.root
+HomePage.resource = require('../try.results.json').resources.root // Inline in template
 
 export default HomePage

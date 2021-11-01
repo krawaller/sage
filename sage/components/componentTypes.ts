@@ -1,24 +1,24 @@
 import { ReactNode } from 'react'
 import {
-  SageFilePage,
-  SageFolderPage,
+  SageFileResource,
+  SageFolderResource,
   SageLink,
 } from '../processSource/processTypes'
 
 export type SageFolderComponentProps = {
   linkMap: Record<string, SageLink>
-} & SageFolderPage
+} & SageFolderResource
 
 export type SageFileComponentProps<P = any> = {
   linkMap: Record<string, SageLink>
-} & SageFilePage<P>
+} & SageFileResource<P>
 
 export type SageFolderComponent = ((
   props: SageFolderComponentProps
-) => ReactNode) & { page: SageFolderPage }
+) => ReactNode) & { resource: SageFolderResource }
 
 export type SageFileComponent<P = any> = ((
   props: SageFileComponentProps<P>
-) => ReactNode) & { page: SageFilePage }
+) => ReactNode) & { resource: SageFileResource }
 
 export type SageComponent = SageFileComponent | SageFolderComponent

@@ -1,18 +1,18 @@
-import { ProcessDirectoryOutput, SagePage } from './processTypes'
+import { ProcessDirectoryOutput, SageResource } from './processTypes'
 
 export const getFlatList = (
   dir: ProcessDirectoryOutput,
   isRoot?: boolean
-): SagePage[] => {
+): SageResource[] => {
   const { files, folders, ...rest } = dir
-  const current: SagePage = {
+  const current: SageResource = {
     ...rest,
     contains: folders.map((f) => f.id).concat(files.map((f) => f.id)),
     crumbs: ['root'].concat(rest.crumbs),
     type: 'folder',
     ...(isRoot && { id: 'root', type: 'root', crumbs: [] }),
   }
-  const containedFiles: SagePage[] = dir.files.map((file) => ({
+  const containedFiles: SageResource[] = dir.files.map((file) => ({
     ...file,
     type: 'file',
     crumbs: ['root'].concat(file.crumbs),

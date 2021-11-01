@@ -1,24 +1,24 @@
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
-import { SageLink, SagePage } from '../processSource/processTypes'
+import { SageLink, SageResource } from '../processSource/processTypes'
 
 type ShellProps = {
-  page: SagePage
+  resource: SageResource
   children: ReactNode
   linkMap: Record<string, SageLink>
 }
 
 export const Shell = (props: ShellProps) => {
-  const { page, children, linkMap } = props
+  const { resource, children, linkMap } = props
   return (
     <div>
       <ul>
-        {page.crumbs.map((id) => (
+        {resource.crumbs.map((id) => (
           <li key={id}>
             <Link href={linkMap[id].path}>{linkMap[id].short}</Link>
           </li>
         ))}
-        <li>{linkMap[page.id].short}</li>
+        <li>{linkMap[resource.id].short}</li>
       </ul>
       <hr />
       {children}

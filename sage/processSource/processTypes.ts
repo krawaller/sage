@@ -15,24 +15,27 @@ export type ProcessDirectoryOutput = {
   folders: ProcessDirectoryOutput[]
 }
 
-export type SageFilePage<P = any> = {
+export type SageFileResource<P = any> = {
   type: 'file'
 } & ProcessFileOutput<P>
 
-export type SageFolderPage = {
+export type SageFolderResource = {
   type: 'folder'
   contains: string[]
 } & Omit<ProcessDirectoryOutput, 'files' | 'folders'>
 
-export type SageRootPage = Omit<SageFolderPage, 'type'> & {
+export type SageRootResource = Omit<SageFolderResource, 'type'> & {
   type: 'root'
 }
 
-export type SagePage<P = any> = SageFilePage<P> | SageFolderPage | SageRootPage
+export type SageResource<P = any> =
+  | SageFileResource<P>
+  | SageFolderResource
+  | SageRootResource
 
 export type SageLink = {
   short: string
   path: string
-  type: SagePage['type']
+  type: SageResource['type']
   kind: string
 }

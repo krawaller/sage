@@ -1,7 +1,7 @@
 import { SagePlugin } from '../plugins'
 import { getFlatList } from './getFlatList'
 import { getLinkRecord } from './getLinkRecord'
-import { getPageRecord } from './getPageRecord'
+import { getResourceRecord } from './getResourceRecord'
 import { processDirectory } from './processDirectory'
 
 type ProcessSourceInput = {
@@ -17,10 +17,10 @@ export const processSource = async (input: ProcessSourceInput) => {
     root: sourcePath,
   })
   const list = getFlatList(tree, true)
-  const pages = getPageRecord(list)
-  const links = getLinkRecord(pages)
+  const resources = getResourceRecord(list)
+  const links = getLinkRecord(resources)
   return {
-    pages,
+    resources,
     links,
   }
 }
