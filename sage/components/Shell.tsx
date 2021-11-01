@@ -25,3 +25,5 @@ export const Shell = (props: ShellProps) => {
     </div>
   )
 }
+
+export default Shell

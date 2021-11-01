@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { processSource } from './sage'
-import config from './sage.process.config'
+import config from './sage.config'
 
 const seed = path.join(__dirname, 'seed')
 

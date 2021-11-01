@@ -14,3 +14,5 @@ export const Folder = (props: SageFolderComponentProps) => {
     </ul>
   )
 }
+
+export default Folder

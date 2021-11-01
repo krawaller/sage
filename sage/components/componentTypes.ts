@@ -20,3 +20,5 @@ export type SageFolderComponent = ((
 export type SageFileComponent<P = any> = ((
   props: SageFileComponentProps<P>
 ) => ReactNode) & { page: SageFilePage }
+
+export type SageComponent = SageFileComponent | SageFolderComponent

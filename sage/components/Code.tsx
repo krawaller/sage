@@ -7,3 +7,5 @@ export const Code = (props: CodeProps) => {
   const { processed } = props
   return <div dangerouslySetInnerHTML={{ __html: processed }}></div>
 }
+
+export default Code
