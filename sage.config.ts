@@ -15,6 +15,9 @@ const sageConfig: SageConfig = {
     graph: graphPlugin,
     markdown: markdownPlugin,
   },
+  settings: {
+    foo: 'bar',
+  },
 }
 
 export default sageConfig

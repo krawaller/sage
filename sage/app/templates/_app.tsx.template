@@ -6,6 +6,7 @@ import Head from 'next/head'
 import {
   SageLinkMapContext,
   SageResourceContext,
+  SageSettingsContext
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
 import type { SageComponent } from '__SAGEPATH__/components'
@@ -18,28 +19,32 @@ const SageApp = (props: AppProps) => {
   return (
     <SageLinkMapContext.Provider value={sageLinkMap}>
       <SageResourceContext.Provider value={resource}>
-        {resource && (
-          <>
-            <Head>
-              <title>{sageLinkMap[resource.id].short}</title>
-              <meta charSet="utf-8" />
-              <meta
-                name="viewport"
-                content="initial-scale=1.0, width=device-width"
-              />
-            </Head>
-            <Shell
-              linkMap={sageLinkMap}
-              resource={resource}
-            >
-              <Component
-                {...pageProps}
-                resource={resource}
+        <SageSettingsContext.Provider value={sageSettings}>
+          {resource && (
+            <>
+              <Head>
+                <title>{sageLinkMap[resource.id].short}</title>
+                <meta charSet="utf-8" />
+                <meta
+                  name="viewport"
+                  content="initial-scale=1.0, width=device-width"
+                />
+              </Head>
+              <Shell
                 linkMap={sageLinkMap}
-              />
-            </Shell>
-          </>
-        )}
+                resource={resource}
+                settings={sageSettings}
+              >
+                <Component
+                  {...pageProps}
+                  resource={resource}
+                  linkMap={sageLinkMap}
+                  settings={sageSettings}
+                />
+              </Shell>
+            </>
+          )}
+        </SageSettingsContext.Provider>
       </SageResourceContext.Provider>
     </SageLinkMapContext.Provider>
   )
@@ -49,3 +54,6 @@ export default SageApp
 
 // Generated from source folder
 const sageLinkMap: Record<string, SageLink> = __LINKMAP__
+
+// Inlined from sage.config
+const sageSettings = __SAGESETTINGS__

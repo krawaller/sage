@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
+import { SageSettings } from '../configTypes'
 import { SageLink, SageResource } from '../processSource/processTypes'
 
-type ShellProps = {
+export type SageShellProps = {
   resource: SageResource
   children: ReactNode
   linkMap: Record<string, SageLink>
+  settings: SageSettings
 }
 
-export const Shell = (props: ShellProps) => {
+export const Shell = (props: SageShellProps) => {
   const { resource, children, linkMap } = props
   return (
     <div>

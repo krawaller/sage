@@ -28,7 +28,8 @@ export const writeShell = async (opts: WriteShellOpts) => {
       appTemplate
         .replace('__SHELLPATH__', relShellPath)
         .replace(/__SAGEPATH__/g, relSagePath)
-        .replace('__LINKMAP__', JSON.stringify(linkMap, null, 2)),
+        .replace('__LINKMAP__', JSON.stringify(linkMap, null, 2))
+        .replace('__SAGESETTINGS__', JSON.stringify(config.settings, null, 2)),
       { filepath: 'foo.ts' }
     )
   )

@@ -1,3 +1,4 @@
+import { SageConfig } from '../configTypes'
 import {
   SageFileResource,
   SageFolderResource,
@@ -6,16 +7,19 @@ import {
 } from '../processSource/processTypes'
 
 export type SageFolderComponentProps = {
+  settings: SageConfig['settings']
   linkMap: Record<string, SageLink>
   resource: SageFolderResource
 }
 
 export type SageFileComponentProps<P = any> = {
+  settings: SageConfig['settings']
   linkMap: Record<string, SageLink>
   resource: SageFileResource<P>
 }
 
 export type SageRootComponentProps = {
+  settings: SageConfig['settings']
   linkMap: Record<string, SageLink>
   resource: SageRootResource
 }
