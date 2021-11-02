@@ -1,9 +1,7 @@
 import React from 'react'
-import { SageFileComponentProps } from './componentTypes'
+import { SageFileComponent } from './componentTypes'
 
-type GraphProps = SageFileComponentProps<string>
-
-export const Graph = (props: GraphProps) => {
+export const Graph: SageFileComponent<string> = (props) => {
   const { resource } = props
   const { processed } = resource
   return <div dangerouslySetInnerHTML={{ __html: processed }}></div>

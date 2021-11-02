@@ -3,40 +3,27 @@ import {
   SageFileResource,
   SageFolderResource,
   SageLink,
+  SageResource,
   SageRootResource,
 } from '../processSource/processTypes'
 
-export type SageFolderComponentProps = {
+export type SageComponentProps<R extends SageResource = SageResource> = {
   settings: SageConfig['settings']
   linkMap: Record<string, SageLink>
-  resource: SageFolderResource
+  resource: R
 }
 
-export type SageFileComponentProps<P = any> = {
-  settings: SageConfig['settings']
-  linkMap: Record<string, SageLink>
-  resource: SageFileResource<P>
-}
+export type SageComponent<R extends SageResource = SageResource> = (
+  props: SageComponentProps<R>
+) => JSX.Element | null
 
-export type SageRootComponentProps = {
-  settings: SageConfig['settings']
-  linkMap: Record<string, SageLink>
-  resource: SageRootResource
-}
+export type SagePage<R extends SageResource = SageResource> =
+  SageComponent<R> & { resource: R }
 
-export type SageFolderComponent = ((
-  props: SageFolderComponentProps
-) => JSX.Element | null) & { resource: SageFolderResource }
+export type SageFolderComponent = SageComponent<SageFolderResource>
+export type SageRootComponent = SageComponent<SageRootResource>
+export type SageFileComponent<P = any> = SageComponent<SageFileResource<P>>
 
-export type SageRootComponent = ((
-  props: SageRootComponentProps
-) => JSX.Element | null) & { resource: SageRootResource }
-
-export type SageFileComponent<P = any> = ((
-  props: SageFileComponentProps<P>
-) => JSX.Element | null) & { resource: SageFileResource }
-
-export type SageComponent =
-  | SageFileComponent
-  | SageFolderComponent
-  | SageRootComponent
+export type SageFolderPage = SagePage<SageFolderResource>
+export type SageRootPage = SagePage<SageRootResource>
+export type SageFilePage<P = any> = SagePage<SageFileResource<P>>

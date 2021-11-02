@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
-import { SageRootComponentProps } from './componentTypes'
+import type { SageRootComponent } from './componentTypes'
 
-export const Root = (props: SageRootComponentProps) => {
+export const Root: SageRootComponent = (props) => {
   const { linkMap, resource } = props
   const { contains } = resource
   return (

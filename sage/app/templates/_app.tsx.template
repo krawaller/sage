@@ -9,12 +9,12 @@ import {
   SageSettingsContext
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
-import type { SageComponent } from '__SAGEPATH__/components'
+import type { SagePage } from '__SAGEPATH__/components'
 import Shell from '__SHELLPATH__' // Controlled via sage.config
 
 const SageApp = (props: AppProps) => {
   const { Component: NextComponent, pageProps } = props
-  const Component = NextComponent as unknown as SageComponent
+  const Component = NextComponent as unknown as SagePage
   const { resource } = Component
   return (
     <SageLinkMapContext.Provider value={sageLinkMap}>

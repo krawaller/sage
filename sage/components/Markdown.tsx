@@ -1,9 +1,7 @@
 import React from 'react'
-import { SageFileComponentProps } from './componentTypes'
+import { SageFileComponent } from './componentTypes'
 
-type MarkdownProps = SageFileComponentProps<string>
-
-export const Markdown = (props: MarkdownProps) => {
+export const Markdown: SageFileComponent<string> = (props) => {
   const { resource } = props
   const { processed } = resource
   return <div dangerouslySetInnerHTML={{ __html: processed }} />

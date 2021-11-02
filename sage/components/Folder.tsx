@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
-import { SageFolderComponentProps } from './componentTypes'
+import { SageFolderComponent } from './componentTypes'
 
-export const Folder = (props: SageFolderComponentProps) => {
+export const Folder: SageFolderComponent = (props) => {
   const { linkMap, resource } = props
   const { contains } = resource
   return (

@@ -17,7 +17,7 @@ type WriteResourceOpts = {
 export const writeResource = async (opts: WriteResourceOpts) => {
   const { config, resource, sagePath, linkMap } = opts
   const rootTemplate = (await fs.readFile(templatePath)).toString()
-  const tsType = `Sage${capitalise(resource.type)}Component`
+  const tsType = `Sage${capitalise(resource.type)}Page`
   const compKind =
     resource.type === 'root'
       ? 'root'
@@ -49,7 +49,7 @@ export const writeResource = async (opts: WriteResourceOpts) => {
       rootTemplate
         .replace(/__INNERPATH__/g, relInnerPath)
         .replace(/__SAGEPATH__/g, relSagePath)
-        .replace(/__COMPONENTTYPE__/g, tsType)
+        .replace(/__PAGETYPE__/g, tsType)
         .replace(/__INNERNAME__/g, capitalise(compKind))
         .replace(/__COMPONENTNAME__/g, capitalise(compKind) + 'Page')
         .replace(/__RESOURCE__/g, JSON.stringify(resource, null, 2)),

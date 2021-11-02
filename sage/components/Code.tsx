@@ -1,9 +1,7 @@
 import React from 'react'
-import { SageFileComponentProps } from './componentTypes'
+import { SageFileComponent } from './componentTypes'
 
-type CodeProps = SageFileComponentProps<string>
-
-export const Code = (props: CodeProps) => {
+export const Code: SageFileComponent<string> = (props) => {
   const { resource } = props
   const { processed } = resource
   return <div dangerouslySetInnerHTML={{ __html: processed }}></div>
