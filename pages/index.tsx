@@ -4,13 +4,13 @@ import React from "react";
 import type { SageRootComponent } from "../sage/components";
 import Root from "../sage/components/Root"; // Controlled via sage.config
 
-const HomePage: SageRootComponent = (props) => {
+const RootPage: SageRootComponent = (props) => {
   return <Root {...props} />;
 };
 
-export default HomePage;
+export default RootPage;
 
-HomePage.resource = {
+RootPage.resource = {
   id: "root",
   crumbs: [],
   meta: {

@@ -1,10 +1,8 @@
-import fs from 'fs-extra'
 import path from 'path'
+import fs from 'fs-extra'
 import { processSource } from './sage'
 import config from './sage.config'
-import { writeApp } from './sage/app/writeApp'
-import { writeRoot } from './sage/app/writeRoot'
-import { SageRootResource } from './sage/processSource/processTypes'
+import { writeNextApp } from './sage/app'
 
 const seed = path.join(__dirname, 'seed')
 
@@ -14,9 +12,12 @@ const seed = path.join(__dirname, 'seed')
     sourcePath: seed,
     plugins: config.processors,
   })
-  fs.writeFile('try.results.json', JSON.stringify(result, null, 2))
-  fs.writeFile('sage.link-map.json', JSON.stringify(result.links, null, 2))
-  writeApp({ linkMap: result.links, config })
-  writeRoot({ config, resource: result.resources.root as SageRootResource })
+  await fs.remove(path.join(__dirname, 'pages'))
+  await writeNextApp({
+    config,
+    linkMap: result.links,
+    resources: Object.values(result.resources),
+    sagePath: './sage',
+  })
   console.log('WEE!')
 })()

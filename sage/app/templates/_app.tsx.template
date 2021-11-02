@@ -6,9 +6,9 @@ import Head from 'next/head'
 import {
   SageLinkMapContext,
   SageResourceContext,
-} from '../sage/components/contexts'
-import type { SageLink } from '../sage/processSource/processTypes'
-import type { SageComponent } from '../sage/components'
+} from '__SAGEPATH__/components/contexts'
+import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
+import type { SageComponent } from '__SAGEPATH__/components'
 import Shell from '__SHELLPATH__' // Controlled via sage.config
 
 const SageApp = (props: AppProps) => {
