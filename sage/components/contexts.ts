@@ -3,7 +3,7 @@ import { SageLink, SageResource } from '../processSource/processTypes'
 
 export const SageLinkMapContext = createContext<Record<string, SageLink>>({})
 
-export const SagePageContext = createContext<SageResource>(
+export const SageResourceContext = createContext<SageResource>(
   {} as unknown as SageResource
 )
 
@@ -12,5 +12,5 @@ export const useLinkMap = () => {
 }
 
 export const useCurrentPage = () => {
-  return useContext(SagePageContext)
+  return useContext(SageResourceContext)
 }
