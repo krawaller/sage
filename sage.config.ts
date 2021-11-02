@@ -4,6 +4,7 @@ import { SageConfig } from './sage/configTypes'
 const sageConfig: SageConfig = {
   components: {
     folder: './sage/components/Folder',
+    root: './sage/components/Root',
     shell: './sage/components/Shell',
     code: './sage/components/Code',
     graph: './sage/components/Graph',
