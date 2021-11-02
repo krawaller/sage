@@ -1,4 +1,4 @@
-import { codePlugin, graphPlugin, markdownPlugin } from './sage'
+import { codePlugin, graphPlugin, markdownPlugin, questionPlugin } from './sage'
 import { SageConfig } from './sage/configTypes'
 
 const sageConfig: SageConfig = {
@@ -9,11 +9,13 @@ const sageConfig: SageConfig = {
     code: './sage/components/Code',
     graph: './sage/components/Graph',
     markdown: './sage/components/Markdown',
+    question: './sage/components/Question',
   },
   processors: {
     code: codePlugin,
     graph: graphPlugin,
     markdown: markdownPlugin,
+    question: questionPlugin,
   },
   settings: {
     foo: 'bar',

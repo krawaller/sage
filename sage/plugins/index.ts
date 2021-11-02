@@ -1,4 +1,5 @@
-export { SagePlugin } from './pluginTypes'
+export type { SagePlugin } from './pluginTypes'
 export { codePlugin } from './code'
 export { graphPlugin } from './graph'
 export { markdownPlugin } from './markdown'
+export { questionPlugin } from './question'
