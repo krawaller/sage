@@ -15,9 +15,14 @@ export const getLinkRecord = (
             : '/' +
               page.crumbs
                 .slice(1)
-                .concat(page.id)
-                .join('_')
-                .replace(/\./g, '_'),
+                .concat(
+                  page.id
+                    // Replace first dot (between category and name) with slash
+                    .replace('.', '/')
+                    // Replace dots inside name with _
+                    .replace(/\./g, '_')
+                )
+                .join('/'),
         short:
           page.meta.short || (page.type === 'file' && page.name) || page.id,
       },
