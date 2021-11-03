@@ -1,19 +1,15 @@
-import Link from 'next/link'
 import React from 'react'
+import { Folder } from '.'
+import { SageFolderResource } from '../processSource/processTypes'
 import type { SageRootComponent } from './componentTypes'
 
 export const Root: SageRootComponent = (props) => {
-  const { linkMap, resource } = props
-  const { contains } = resource
-  return (
-    <ul>
-      {contains.map((id) => (
-        <li key={id}>
-          <Link href={linkMap[id].path}>{linkMap[id].short}</Link>
-        </li>
-      ))}
-    </ul>
-  )
+  const { resource } = props
+  const folder: SageFolderResource = {
+    ...resource,
+    type: 'folder',
+  }
+  return <Folder {...props} resource={folder} />
 }
 
 export default Root

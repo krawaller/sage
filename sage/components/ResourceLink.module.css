@@ -2,10 +2,27 @@
   cursor: pointer;
 }
 
-.resource-link-next:hover {
+.resource-link-next:not(.resource-link-vertical):not(.resource-link-naked):hover {
   text-decoration: underline;
 }
 
 .resource-link-emoji {
   margin-right: 3px;
+}
+
+.resource-link-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.resource-link-vertical .resource-link-emoji {
+  font-size: 3em;
+  margin-bottom: -8px;
+  text-decoration: none !important;
+}
+
+.resource-link-vertical:not(.resource-link-naked):hover .resource-link-short {
+  text-decoration: underline;
 }

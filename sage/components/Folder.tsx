@@ -1,18 +1,17 @@
-import Link from 'next/link'
 import React from 'react'
 import { SageFolderComponent } from './componentTypes'
+import { ResourceLink } from './ResourceLink'
+import styles from './Folder.module.css'
 
 export const Folder: SageFolderComponent = (props) => {
   const { linkMap, resource } = props
   const { contains } = resource
   return (
-    <ul>
+    <div className={styles.folder}>
       {contains.map((id) => (
-        <li key={id}>
-          <Link href={linkMap[id].path}>{linkMap[id].short}</Link>
-        </li>
+        <ResourceLink key={id} link={linkMap[id]} vertical />
       ))}
-    </ul>
+    </div>
   )
 }
 

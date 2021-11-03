@@ -28,6 +28,14 @@ const sageConfig: SageConfig = {
       messagingSenderId: '919235297263',
       appId: '1:919235297263:web:be307ec17686ce6a34c01a',
     },
+    emojis: {
+      folder: '📁',
+      root: '🏠',
+      code: '💻',
+      question: '🙋',
+      graph: '💭',
+      markdown: '📖',
+    },
   },
 }
 
