@@ -3,11 +3,13 @@
     "try": "node -r esbuild-register try.ts",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "esbuild": "^0.13.10",
     "esbuild-register": "^3.0.0",
+    "firebase": "^9.2.0",
     "fs-extra": "^10.0.0",
     "graphviz-cli": "^1.0.0",
     "highlight.js": "^11.3.1",

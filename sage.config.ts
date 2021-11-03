@@ -18,7 +18,16 @@ const sageConfig: SageConfig = {
     question: questionPlugin,
   },
   settings: {
-    foo: 'bar',
+    firebase: {
+      apiKey: 'AIzaSyBbgosEF_634jX3GzaEvEZB40X7DyAEa6g',
+      authDomain: 'sage-vote.firebaseapp.com',
+      databaseURL:
+        'https://sage-vote-default-rtdb.europe-west1.firebasedatabase.app',
+      projectId: 'sage-vote',
+      storageBucket: 'sage-vote.appspot.com',
+      messagingSenderId: '919235297263',
+      appId: '1:919235297263:web:be307ec17686ce6a34c01a',
+    },
   },
 }
 

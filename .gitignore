@@ -2,3 +2,4 @@ node_modules
 try.results.json
 .next
 pages
+out
