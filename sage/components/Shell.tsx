@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import { SageSettings } from '../configTypes'
 import { SageLink, SageResource } from '../processSource/processTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
+import { ResourceLink } from './ResourceLink'
 
 export type SageShellProps = {
   resource: SageResource
@@ -22,11 +23,9 @@ export const Shell = (props: SageShellProps) => {
       <div className={styles.controls}>
         <nav className={styles.nav}>
           {resource.crumbs.map((id) => (
-            <Link key={id} href={linkMap[id].path}>
-              {linkMap[id].short}
-            </Link>
+            <ResourceLink key={id} link={linkMap[id]} />
           ))}
-          <span>{linkMap[resource.id].short}</span>
+          <ResourceLink link={linkMap[resource.id]} naked />
         </nav>
         {currentUser ? (
           <button onClick={authService.signOut}>

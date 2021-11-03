@@ -1,0 +1,11 @@
+.resource-link-next {
+  cursor: pointer;
+}
+
+.resource-link-next:hover {
+  text-decoration: underline;
+}
+
+.resource-link-emoji {
+  margin-right: 3px;
+}
