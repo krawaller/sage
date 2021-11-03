@@ -11,31 +11,32 @@ export type SageShellProps = {
   settings: SageSettings
 }
 
+import styles from './Shell.module.css'
+
 export const Shell = (props: SageShellProps) => {
   const { resource, children, linkMap } = props
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
   return (
-    <div>
-      {currentUser ? (
-        <div>
-          Hello {currentUser.displayName}!{' '}
-          <button onClick={authService.signOut}>Log out</button>
-        </div>
-      ) : (
-        <button onClick={authService.signInWithGithubPopup}>Log in</button>
-      )}
-      <hr />
-      <ul>
-        {resource.crumbs.map((id) => (
-          <li key={id}>
-            <Link href={linkMap[id].path}>{linkMap[id].short}</Link>
-          </li>
-        ))}
-        <li>{linkMap[resource.id].short}</li>
-      </ul>
-      <hr />
-      {children}
+    <div className={styles.shell}>
+      <div className={styles.controls}>
+        <nav className={styles.nav}>
+          {resource.crumbs.map((id) => (
+            <Link key={id} href={linkMap[id].path}>
+              {linkMap[id].short}
+            </Link>
+          ))}
+          <span>{linkMap[resource.id].short}</span>
+        </nav>
+        {currentUser ? (
+          <button onClick={authService.signOut}>
+            Log out {currentUser.displayName}
+          </button>
+        ) : (
+          <button onClick={authService.signInWithGithubPopup}>Log in</button>
+        )}
+      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   )
 }

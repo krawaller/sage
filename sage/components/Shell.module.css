@@ -1,0 +1,26 @@
+.shell {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #777;
+  padding-bottom: 8px;
+}
+
+.nav > :not(:last-child):after {
+  display: inline-block;
+  content: ' > ';
+  padding: 0 10px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
