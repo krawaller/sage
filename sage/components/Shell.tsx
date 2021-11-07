@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React, {
   CSSProperties,
   ReactNode,
@@ -24,6 +23,7 @@ export const Shell = (props: SageShellProps) => {
   const { resource, children, linkMap, settings } = props
   const {
     controls: { zoomMin, zoomMax },
+    emojis,
   } = settings
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
@@ -39,14 +39,14 @@ export const Shell = (props: SageShellProps) => {
   )
   return (
     <div className={css.shell} style={styles}>
-      <div className={css.controls}>
+      <div className={css.topbar}>
         <nav className={css.nav}>
           {resource.crumbs.map((id) => (
             <ResourceLink key={id} link={linkMap[id]} />
           ))}
           <ResourceLink link={linkMap[resource.id]} naked />
         </nav>
-        <div>
+        <div className={css.controls}>
           <input
             className="zoomer"
             type="range"
@@ -56,12 +56,24 @@ export const Shell = (props: SageShellProps) => {
             value={zoom}
             onChange={handleZoomChange}
           />
+
+          <button
+            onClick={() =>
+              document.fullscreenElement
+                ? document.exitFullscreen()
+                : document.documentElement.requestFullscreen()
+            }
+          >
+            {emojis.fullscreen} Fullscreen
+          </button>
           {currentUser ? (
             <button onClick={authService.signOut}>
-              Log out {currentUser.displayName}
+              {emojis.login} Log out
             </button>
           ) : (
-            <button onClick={authService.signInWithGithubPopup}>Log in</button>
+            <button onClick={authService.signInWithGithubPopup}>
+              {emojis.login} Log in
+            </button>
           )}
         </div>
       </div>

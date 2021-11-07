@@ -4,12 +4,22 @@
   flex-direction: column;
 }
 
-.controls {
+.topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #777;
   padding-bottom: 8px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls > :not(:first-child) {
+  margin-left: 10px;
 }
 
 .nav > :not(:last-child):after {

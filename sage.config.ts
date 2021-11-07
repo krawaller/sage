@@ -35,6 +35,8 @@ const sageConfig: SageConfig = {
       question: '🙋',
       graph: '💭',
       markdown: '📖',
+      login: '🔑',
+      fullscreen: '🐡',
     },
     controls: {
       zoomMin: 1,
