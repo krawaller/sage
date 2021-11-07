@@ -36,6 +36,10 @@ const sageConfig: SageConfig = {
       graph: '💭',
       markdown: '📖',
     },
+    controls: {
+      zoomMin: 1,
+      zoomMax: 4,
+    },
   },
 }
 

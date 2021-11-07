@@ -21,16 +21,19 @@ export type SageShellProps = {
 import css from './Shell.module.css'
 
 export const Shell = (props: SageShellProps) => {
-  const { resource, children, linkMap } = props
+  const { resource, children, linkMap, settings } = props
+  const {
+    controls: { zoomMin, zoomMax },
+  } = settings
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
-  const [zoom, setZoom] = useState(0)
+  const [zoom, setZoom] = useState<number>(zoomMin)
   const handleZoomChange = useCallback((evt) => {
     setZoom(Number(evt.target.value))
   }, [])
   const styles = useMemo<CSSProperties & { '--zoom': number }>(
     () => ({
-      '--zoom': zoom + 1,
+      '--zoom': zoom,
     }),
     [zoom]
   )
@@ -47,8 +50,8 @@ export const Shell = (props: SageShellProps) => {
           <input
             className="zoomer"
             type="range"
-            min="0"
-            max="2"
+            min={zoomMin}
+            max={zoomMax}
             step=".1"
             value={zoom}
             onChange={handleZoomChange}
