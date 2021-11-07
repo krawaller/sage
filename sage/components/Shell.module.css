@@ -23,4 +23,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* So zoomed content doesn't overlap control panel */
+}
+
+.content > * {
+  transform: scale(var(--zoom), var(--zoom));
+}
+
+.zoomer {
+  user-select: none;
 }
