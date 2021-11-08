@@ -12,16 +12,6 @@
   padding-bottom: 8px;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.controls > :not(:first-child) {
-  margin-left: 10px;
-}
-
 .content {
   flex: 1;
   display: flex;
@@ -32,8 +22,4 @@
 
 .content > * {
   transform: scale(var(--zoom), var(--zoom));
-}
-
-.zoomer {
-  user-select: none;
 }
