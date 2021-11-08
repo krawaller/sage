@@ -6,7 +6,9 @@ import Head from 'next/head'
 import {
   SageLinkMapContext,
   SageResourceContext,
-  SageSettingsContext
+  SageSettingsContext,
+  SageCssVarsContext,
+  useCssVarsTopLevel,
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
@@ -16,34 +18,39 @@ const SageApp = (props: AppProps) => {
   const { Component: NextComponent, pageProps } = props
   const Component = NextComponent as unknown as SagePage
   const { resource } = Component
+  const cssCtxVal = useCssVarsTopLevel(sageSettings.initialCssVars)
   return (
     <SageLinkMapContext.Provider value={sageLinkMap}>
       <SageResourceContext.Provider value={resource}>
         <SageSettingsContext.Provider value={sageSettings}>
-          {resource && (
-            <>
-              <Head>
-                <title>{sageLinkMap[resource.id].short}</title>
-                <meta charSet="utf-8" />
-                <meta
-                  name="viewport"
-                  content="initial-scale=1.0, width=device-width"
-                />
-              </Head>
-              <Shell
-                linkMap={sageLinkMap}
-                resource={resource}
-                settings={sageSettings}
-              >
-                <Component
-                  {...pageProps}
-                  resource={resource}
-                  linkMap={sageLinkMap}
-                  settings={sageSettings}
-                />
-              </Shell>
-            </>
-          )}
+          <SageCssVarsContext.Provider value={cssCtxVal}>
+            {resource && (
+              <>
+                <Head>
+                  <title>{sageLinkMap[resource.id].short}</title>
+                  <meta charSet="utf-8" />
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                  />
+                </Head>
+                <div style={cssCtxVal.cssVars}>
+                  <Shell
+                    linkMap={sageLinkMap}
+                    resource={resource}
+                    settings={sageSettings}
+                  >
+                    <Component
+                      {...pageProps}
+                      resource={resource}
+                      linkMap={sageLinkMap}
+                      settings={sageSettings}
+                    />
+                  </Shell>
+                </div>
+              </>
+            )}
+          </SageCssVarsContext.Provider>
         </SageSettingsContext.Provider>
       </SageResourceContext.Provider>
     </SageLinkMapContext.Provider>

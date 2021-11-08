@@ -42,6 +42,9 @@ const sageConfig: SageConfig = {
       zoomMin: 1,
       zoomMax: 4,
     },
+    initialCssVars: {
+      zoom: 1, // initial zoom level
+    },
   },
 }
 

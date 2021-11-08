@@ -8,6 +8,7 @@ import React, {
 import { SageSettings } from '../configTypes'
 import { SageLink, SageResource } from '../processSource/processTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
+import { useCssVars } from './contexts'
 import { ResourceLink } from './ResourceLink'
 
 export type SageShellProps = {
@@ -27,18 +28,13 @@ export const Shell = (props: SageShellProps) => {
   } = settings
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
-  const [zoom, setZoom] = useState<number>(zoomMin)
-  const handleZoomChange = useCallback((evt) => {
-    setZoom(Number(evt.target.value))
-  }, [])
-  const styles = useMemo<CSSProperties & { '--zoom': number }>(
-    () => ({
-      '--zoom': zoom,
-    }),
-    [zoom]
+  const { cssVars, updateCssVars } = useCssVars()
+  const handleZoomChange = useCallback(
+    (e) => updateCssVars({ zoom: e.target.value }),
+    []
   )
   return (
-    <div className={css.shell} style={styles}>
+    <div className={css.shell}>
       <div className={css.topbar}>
         <nav className={css.nav}>
           {resource.crumbs.map((id) => (
@@ -53,7 +49,7 @@ export const Shell = (props: SageShellProps) => {
             min={zoomMin}
             max={zoomMax}
             step=".1"
-            value={zoom}
+            value={cssVars['--zoom']}
             onChange={handleZoomChange}
           />
 
