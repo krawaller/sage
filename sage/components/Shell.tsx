@@ -1,15 +1,9 @@
-import React, {
-  CSSProperties,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react'
+import React, { ReactNode, useCallback } from 'react'
 import { SageSettings } from '../configTypes'
 import { SageLink, SageResource } from '../processSource/processTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
+import { BreadCrumbs } from './Breadcrumbs'
 import { useCssVars } from './contexts'
-import { ResourceLink } from './ResourceLink'
 
 export type SageShellProps = {
   resource: SageResource
@@ -36,12 +30,7 @@ export const Shell = (props: SageShellProps) => {
   return (
     <div className={css.shell}>
       <div className={css.topbar}>
-        <nav className={css.nav}>
-          {resource.crumbs.map((id) => (
-            <ResourceLink key={id} link={linkMap[id]} />
-          ))}
-          <ResourceLink link={linkMap[resource.id]} naked />
-        </nav>
+        <BreadCrumbs linkMap={linkMap} resource={resource} />
         <div className={css.controls}>
           <input
             className="zoomer"

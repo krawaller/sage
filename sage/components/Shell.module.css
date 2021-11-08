@@ -22,12 +22,6 @@
   margin-left: 10px;
 }
 
-.nav > :not(:last-child):after {
-  display: inline-block;
-  content: ' > ';
-  padding: 0 10px;
-}
-
 .content {
   flex: 1;
   display: flex;
