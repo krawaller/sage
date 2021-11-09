@@ -52,3 +52,5 @@ export const Controls = (props: ControlsProps) => {
     </div>
   )
 }
+
+export default Controls

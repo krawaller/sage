@@ -5,7 +5,8 @@ const sageConfig: SageConfig = {
   components: {
     folder: './sage/components/Folder',
     root: './sage/components/Root',
-    shell: './sage/components/Shell',
+    breadcrumbs: './sage/components/BreadCrumbs',
+    controls: './sage/components/Controls',
     code: './sage/components/Code',
     graph: './sage/components/Graph',
     markdown: './sage/components/Markdown',

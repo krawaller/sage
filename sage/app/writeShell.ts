@@ -5,6 +5,10 @@ import { SageConfig } from '../configTypes'
 import { SageLink } from '../processSource/processTypes'
 
 const templatePath = path.join(__dirname, 'templates/_app.tsx.template')
+const templateCssPath = path.join(
+  __dirname,
+  'templates/app.module.css.template'
+)
 const pagesPath = path.join(__dirname, '../../pages')
 
 type WriteShellOpts = {
@@ -16,9 +20,13 @@ type WriteShellOpts = {
 export const writeShell = async (opts: WriteShellOpts) => {
   const { config, linkMap, sagePath } = opts
   const appTemplate = (await fs.readFile(templatePath)).toString()
-  const relShellPath = path.join(
+  const relBreadCrumbsPath = path.join(
     '../', // down 1 from 'pages'
-    config.components.shell
+    config.components.breadcrumbs
+  )
+  const relControlsPath = path.join(
+    '../', // down 1 from 'pages'
+    config.components.controls
   )
   const relSagePath = path.join('../', sagePath) // no need when npm package
   await fs.ensureDir(pagesPath)
@@ -26,11 +34,13 @@ export const writeShell = async (opts: WriteShellOpts) => {
     path.join(pagesPath, '_app.tsx'),
     prettier.format(
       appTemplate
-        .replace('__SHELLPATH__', relShellPath)
+        .replace('__BREADCRUMBSPATH__', relBreadCrumbsPath)
+        .replace('__CONTROLSPATH__', relControlsPath)
         .replace(/__SAGEPATH__/g, relSagePath)
         .replace('__LINKMAP__', JSON.stringify(linkMap, null, 2))
         .replace('__SAGESETTINGS__', JSON.stringify(config.settings, null, 2)),
       { filepath: 'foo.ts' }
     )
   )
+  await fs.copyFile(templateCssPath, path.join(pagesPath, 'app.module.css'))
 }

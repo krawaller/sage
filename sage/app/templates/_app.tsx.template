@@ -12,7 +12,10 @@ import {
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
-import Shell from '__SHELLPATH__' // Controlled via sage.config
+import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
+import Controls from '__CONTROLSPATH__' // Controlled via sage.config
+
+import css from './app.module.css'
 
 const SageApp = (props: AppProps) => {
   const { Component: NextComponent, pageProps } = props
@@ -34,19 +37,19 @@ const SageApp = (props: AppProps) => {
                     content="initial-scale=1.0, width=device-width"
                   />
                 </Head>
-                <div style={cssCtxVal.cssVars}>
-                  <Shell
-                    linkMap={sageLinkMap}
-                    resource={resource}
-                    settings={sageSettings}
-                  >
+                <div style={cssCtxVal.cssVars} className={css.shell}>
+                  <div className={css.topbar}>
+                    <BreadCrumbs linkMap={sageLinkMap} resource={resource} />
+                    <Controls settings={sageSettings} />
+                  </div>
+                  <div className={css.content}>
                     <Component
                       {...pageProps}
                       resource={resource}
                       linkMap={sageLinkMap}
                       settings={sageSettings}
                     />
-                  </Shell>
+                  </div>
                 </div>
               </>
             )}

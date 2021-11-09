@@ -1,5 +1,7 @@
+/* Generated file, do not edit! If you want to add stylesheets, do <TBA> instead! */
+
 .shell {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
