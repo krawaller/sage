@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import classNames from 'classnames'
+import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { useCssVars } from './contexts'
@@ -21,6 +22,18 @@ export const Controls = (props: ControlsProps) => {
   } = settings
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
+  const [isFullscreen, setIsFullScreen] = useState(
+    typeof document !== 'undefined' && Boolean(document.fullscreenElement)
+  )
+  const handleToggleFullScreen = useCallback(() => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+      setIsFullScreen(false)
+    } else {
+      document.documentElement.requestFullscreen()
+      setIsFullScreen(true)
+    }
+  }, [])
   return (
     <div className={css.controls}>
       <input
@@ -34,16 +47,15 @@ export const Controls = (props: ControlsProps) => {
       />
 
       <button
-        onClick={() =>
-          document.fullscreenElement
-            ? document.exitFullscreen()
-            : document.documentElement.requestFullscreen()
-        }
+        className={classNames(isFullscreen && 'pressed')}
+        onClick={handleToggleFullScreen}
       >
         {emojis.fullscreen} Fullscreen
       </button>
       {currentUser ? (
-        <button onClick={authService.signOut}>{emojis.login} Log out</button>
+        <button className="pressed" onClick={authService.signOut}>
+          {emojis.login} Log out
+        </button>
       ) : (
         <button onClick={authService.signInWithGithubPopup}>
           {emojis.login} Log in

@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: var(--pad);
 }
 
 .controls > :not(:first-child) {
-  margin-left: 10px;
+  margin-left: var(--pad);
 }

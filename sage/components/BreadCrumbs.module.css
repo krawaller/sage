@@ -1,5 +1,10 @@
+.nav {
+  padding: var(--pad);
+}
+
 .nav > :not(:last-child):after {
   display: inline-block;
   content: ' > ';
-  padding: 0 10px;
+  padding: 0 var(--pad);
+  color: #999;
 }

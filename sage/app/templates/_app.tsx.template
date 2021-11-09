@@ -36,6 +36,7 @@ const SageApp = (props: AppProps) => {
                     name="viewport"
                     content="initial-scale=1.0, width=device-width"
                   />
+                  <link rel="stylesheet" href="/global.css" />
                 </Head>
                 <div style={cssCtxVal.cssVars} className={css.shell}>
                   <div className={css.topbar}>
