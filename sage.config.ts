@@ -19,6 +19,7 @@ const sageConfig: SageConfig = {
     question: questionPlugin,
   },
   settings: {
+    presentationId: 'reduxStuff',
     firebase: {
       apiKey: 'AIzaSyBbgosEF_634jX3GzaEvEZB40X7DyAEa6g',
       authDomain: 'sage-vote.firebaseapp.com',
