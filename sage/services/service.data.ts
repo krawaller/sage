@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue } from 'firebase/database'
+import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { FirebaseApp } from '@firebase/app'
 import { useFirebaseApp } from './service.firebase'
 import { useEffect, useMemo, useState } from 'react'
@@ -19,6 +19,13 @@ export const makeDataService = (app: FirebaseApp, presentationId: string) => {
         const data = snapshot.val()
         callback(data)
       })
+    },
+    setQurrentQuestion(question: any) {
+      const currentRef = ref(
+        db,
+        `presentations/${presentationId}/currentQuestion`
+      )
+      set(currentRef, question)
     },
   }
 }
