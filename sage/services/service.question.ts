@@ -4,7 +4,10 @@ import { useFirebaseApp } from './service.firebase'
 import { useEffect, useMemo, useState } from 'react'
 import { useSettings } from '../components/contexts'
 
-export const makeDataService = (app: FirebaseApp, presentationId: string) => {
+export const makeQuestionService = (
+  app: FirebaseApp,
+  presentationId: string
+) => {
   const db = getDatabase(app)
   return {
     quizAnswers(
@@ -30,20 +33,20 @@ export const makeDataService = (app: FirebaseApp, presentationId: string) => {
   }
 }
 
-export const useDataService = () => {
+export const useQuestionService = () => {
   const app = useFirebaseApp()
   const { presentationId } = useSettings()
   return useMemo(
-    () => makeDataService(app, presentationId),
+    () => makeQuestionService(app, presentationId),
     [app, presentationId]
   )
 }
 
 export const useQuestionAnswers = (questionId: string) => {
-  const dataService = useDataService()
+  const dataService = useQuestionService()
   const [answers, setAnswers] = useState<Record<string, string | number>>()
   useEffect(() => {
     return dataService.quizAnswers(questionId, setAnswers)
-  }, [questionId])
+  }, [questionId, dataService])
   return answers
 }
