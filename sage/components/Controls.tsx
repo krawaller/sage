@@ -17,10 +17,10 @@ export const Controls = (props: ControlsProps) => {
     emojis,
   } = settings
   const { cssVars, updateCssVars } = useCssVars()
-  const handleZoomChange = useCallback(
-    (e) => updateCssVars({ zoom: e.target.value }),
-    []
-  )
+  const handleZoomChange = useCallback((e) => {
+    // filter out updates caused by remote
+    e?.target?.value !== undefined && updateCssVars({ zoom: e.target.value })
+  }, [])
   const handleRemoteZoomChange = useCallback(
     (zoom) =>
       updateCssVars({ zoom: Math.max(zoomMin, Math.min(zoom, zoomMax)) }),

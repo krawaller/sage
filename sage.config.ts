@@ -20,6 +20,7 @@ const sageConfig: SageConfig = {
   },
   settings: {
     presentationId: 'reduxStuff',
+    remoteThreshold: 5000,
     firebase: {
       apiKey: 'AIzaSyBbgosEF_634jX3GzaEvEZB40X7DyAEa6g',
       authDomain: 'sage-vote.firebaseapp.com',

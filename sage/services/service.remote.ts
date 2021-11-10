@@ -4,9 +4,11 @@ import { useMemo } from 'react'
 import { useSettings } from '../components/contexts'
 import { useFirebaseApp } from './service.firebase'
 
-const threshold = 5000
-
-export const makeRemoteService = (app: FirebaseApp, presentationId: string) => {
+export const makeRemoteService = (
+  app: FirebaseApp,
+  presentationId: string,
+  threshold = 5000
+) => {
   const db = getDatabase(app)
   return {
     zoom(callback: (v: number) => void) {
@@ -25,9 +27,9 @@ export const makeRemoteService = (app: FirebaseApp, presentationId: string) => {
 
 export const useRemoteService = () => {
   const app = useFirebaseApp()
-  const { presentationId } = useSettings()
+  const { presentationId, remoteThreshold } = useSettings()
   return useMemo(
-    () => makeRemoteService(app, presentationId),
+    () => makeRemoteService(app, presentationId, remoteThreshold),
     [app, presentationId]
   )
 }
