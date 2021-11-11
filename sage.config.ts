@@ -11,6 +11,7 @@ const sageConfig: SageConfig = {
     graph: './sage/components/Graph',
     markdown: './sage/components/Markdown',
     question: './sage/components/Question',
+    remote: './sage/components/Remote',
   },
   processors: {
     code: codePlugin,

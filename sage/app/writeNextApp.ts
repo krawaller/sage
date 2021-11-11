@@ -3,6 +3,7 @@ import { SageLink, SageResource } from '../processSource/processTypes'
 import { writeShell } from './writeShell'
 import { writeResource } from './writeResource'
 import { seedPublic } from './seedPublic'
+import { writeRemote } from './writeRemote'
 
 type WriteOpts = {
   resources: SageResource[]
@@ -16,6 +17,7 @@ export const writeNextApp = async (opts: WriteOpts) => {
   await Promise.all([
     seedPublic({ sagePath }),
     writeShell({ sagePath, config, linkMap }),
+    writeRemote({ sagePath, config }),
     ...resources.map((resource) =>
       writeResource({ linkMap, resource, sagePath, config })
     ),

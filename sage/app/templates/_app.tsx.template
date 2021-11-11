@@ -33,9 +33,6 @@ const ResourcePage = (props: ResourcePageProps) => {
     <>
       <Head>
         <title>{sageLinkMap[resource.id].short}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="/global.css" />
       </Head>
       <div style={cssVars} className={css.shell}>
         <div className={css.topbar}>
