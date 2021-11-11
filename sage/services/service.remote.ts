@@ -1,6 +1,12 @@
 import { FirebaseApp } from '@firebase/app'
-import { getDatabase, onValue, ref } from '@firebase/database'
-import { useMemo } from 'react'
+import {
+  DatabaseReference,
+  getDatabase,
+  onValue,
+  ref,
+} from '@firebase/database'
+import { useRouter } from 'next/dist/client/router'
+import { useCallback, useMemo } from 'react'
 import { useSettings } from '../components/contexts'
 import { useFirebaseApp } from './service.firebase'
 
@@ -13,16 +19,28 @@ export const makeRemoteService = (
   return {
     zoom(callback: (v: number) => void) {
       const zoomRef = ref(db, `presentations/${presentationId}/remote/zoom`)
-      const start = Date.now()
-      return onValue(zoomRef, (snapshot) => {
-        const at = Date.now()
-        if (at - start > threshold) {
-          const data = snapshot.val()
-          callback(data)
-        }
-      })
+      return thresholdCallback(zoomRef, callback, threshold)
+    },
+    path(callback: (p: string) => void) {
+      const pathRef = ref(db, `presentations/${presentationId}/remote/path`)
+      return thresholdCallback(pathRef, callback, threshold)
     },
   }
+}
+
+const thresholdCallback = (
+  ref: DatabaseReference,
+  callback: (t: any) => void,
+  threshold: number
+) => {
+  const start = Date.now()
+  return onValue(ref, (snapshot) => {
+    const at = Date.now()
+    if (at - start > threshold) {
+      const data = snapshot.val()
+      callback(data)
+    }
+  })
 }
 
 export const useRemoteService = () => {
@@ -39,4 +57,20 @@ export const useRemoteZoom = (callback: (zoom: number) => void) => {
   return useMemo(() => {
     remoteService.zoom(callback)
   }, [callback, remoteService])
+}
+
+export const useRemotePath = (callback: (path: string) => void) => {
+  const remoteService = useRemoteService()
+  return useMemo(() => {
+    remoteService.path(callback)
+  }, [callback, remoteService])
+}
+
+export const useObeyRemotePath = () => {
+  const router = useRouter()
+  const handleRemoteRouteChange = useCallback(
+    (path) => router.push(path),
+    [router]
+  )
+  useRemotePath(handleRemoteRouteChange)
 }

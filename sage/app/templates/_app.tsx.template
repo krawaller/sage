@@ -12,10 +12,16 @@ import {
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
+import { useObeyRemotePath } from '__SAGEPATH__/services/service.remote'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
 import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 
 import css from './app.module.css'
+
+const Brain = () => {
+  useObeyRemotePath()
+  return null
+}
 
 const SageApp = (props: AppProps) => {
   const { Component: NextComponent, pageProps } = props
@@ -27,6 +33,7 @@ const SageApp = (props: AppProps) => {
       <SageResourceContext.Provider value={resource}>
         <SageSettingsContext.Provider value={sageSettings}>
           <SageCssVarsContext.Provider value={cssCtxVal}>
+            <Brain />
             {resource && (
               <>
                 <Head>
