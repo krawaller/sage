@@ -4,6 +4,7 @@ import {
   getDatabase,
   onValue,
   ref,
+  set,
 } from '@firebase/database'
 import { useRouter } from 'next/dist/client/router'
 import { useCallback, useMemo } from 'react'
@@ -20,6 +21,10 @@ export const makeRemoteService = (
     zoom(callback: (v: number) => void) {
       const zoomRef = ref(db, `presentations/${presentationId}/remote/zoom`)
       return thresholdCallback(zoomRef, callback, threshold)
+    },
+    setZoom(zoom: number) {
+      const zoomRef = ref(db, `presentations/${presentationId}/remote/zoom`)
+      set(zoomRef, zoom)
     },
     path(callback: (p: string) => void) {
       const pathRef = ref(db, `presentations/${presentationId}/remote/path`)
@@ -57,6 +62,13 @@ export const useRemoteZoom = (callback: (zoom: number) => void) => {
   return useMemo(() => {
     remoteService.zoom(callback)
   }, [callback, remoteService])
+}
+
+export const useSetRemoteZoom = () => {
+  const remoteService = useRemoteService()
+  return useCallback((zoom: number) => {
+    remoteService.setZoom(zoom)
+  }, [])
 }
 
 export const useRemotePath = (callback: (path: string) => void) => {
