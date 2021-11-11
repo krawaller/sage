@@ -9,8 +9,9 @@ import {
   SageSettingsContext,
   SageCssVarsContext,
   useCssVarsTopLevel,
+  useCssVars,
 } from '__SAGEPATH__/components/contexts'
-import type { SageLink } from '__SAGEPATH__/processSource/processTypes'
+import type { SageLink, SageResource } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
 import { useObeyRemotePath } from '__SAGEPATH__/services/service.remote'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
@@ -18,9 +19,40 @@ import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 
 import css from './app.module.css'
 
-const Brain = () => {
+type ResourcePageProps = {
+  Component: SagePage<SageResource<any>>
+  pageProps: any
+}
+
+const ResourcePage = (props: ResourcePageProps) => {
+  const { Component, pageProps } = props
+  const { resource } = Component
+  const { cssVars } = useCssVars()
   useObeyRemotePath()
-  return null
+  return (
+    <>
+      <Head>
+        <title>{sageLinkMap[resource.id].short}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="stylesheet" href="/global.css" />
+      </Head>
+      <div style={cssVars} className={css.shell}>
+        <div className={css.topbar}>
+          <BreadCrumbs linkMap={sageLinkMap} resource={resource} />
+          <Controls settings={sageSettings} />
+        </div>
+        <div className={css.content}>
+          <Component
+            {...pageProps}
+            resource={resource}
+            linkMap={sageLinkMap}
+            settings={sageSettings}
+          />
+        </div>
+      </div>
+    </>
+  )
 }
 
 const SageApp = (props: AppProps) => {
@@ -33,33 +65,18 @@ const SageApp = (props: AppProps) => {
       <SageResourceContext.Provider value={resource}>
         <SageSettingsContext.Provider value={sageSettings}>
           <SageCssVarsContext.Provider value={cssCtxVal}>
-            <Brain />
-            {resource && (
-              <>
-                <Head>
-                  <title>{sageLinkMap[resource.id].short}</title>
-                  <meta charSet="utf-8" />
-                  <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                  />
-                  <link rel="stylesheet" href="/global.css" />
-                </Head>
-                <div style={cssCtxVal.cssVars} className={css.shell}>
-                  <div className={css.topbar}>
-                    <BreadCrumbs linkMap={sageLinkMap} resource={resource} />
-                    <Controls settings={sageSettings} />
-                  </div>
-                  <div className={css.content}>
-                    <Component
-                      {...pageProps}
-                      resource={resource}
-                      linkMap={sageLinkMap}
-                      settings={sageSettings}
-                    />
-                  </div>
-                </div>
-              </>
+            <Head>
+              <meta charSet="utf-8" />
+              <meta
+                name="viewport"
+                content="initial-scale=1.0, width=device-width"
+              />
+              <link rel="stylesheet" href="/global.css" />
+            </Head>
+            {resource ? (
+              <ResourcePage Component={Component} pageProps={pageProps} />
+            ) : (
+              <Component {...pageProps} />
             )}
           </SageCssVarsContext.Provider>
         </SageSettingsContext.Provider>

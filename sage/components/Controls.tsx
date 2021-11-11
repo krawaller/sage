@@ -57,15 +57,15 @@ export const Controls = (props: ControlsProps) => {
         className={classNames(isFullscreen && 'pressed')}
         onClick={handleToggleFullScreen}
       >
-        {emojis.fullscreen} Fullscreen
+        {emojis.fullscreen}
       </button>
       {currentUser ? (
         <button className="pressed" onClick={authService.signOut}>
-          {emojis.login} Log out
+          {emojis.login}
         </button>
       ) : (
         <button onClick={authService.signInWithGithubPopup}>
-          {emojis.login} Log in
+          {emojis.login}
         </button>
       )}
     </div>
