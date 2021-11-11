@@ -30,6 +30,10 @@ export const makeRemoteService = (
       const pathRef = ref(db, `presentations/${presentationId}/remote/path`)
       return thresholdCallback(pathRef, callback, threshold)
     },
+    setPath(p: string) {
+      const pathRef = ref(db, `presentations/${presentationId}/remote/path`)
+      set(pathRef, p)
+    },
   }
 }
 
@@ -76,6 +80,13 @@ export const useRemotePath = (callback: (path: string) => void) => {
   return useMemo(() => {
     remoteService.path(callback)
   }, [callback, remoteService])
+}
+
+export const useSetRemotePath = () => {
+  const remoteService = useRemoteService()
+  return useCallback((p: string) => {
+    remoteService.setPath(p)
+  }, [])
 }
 
 export const useObeyRemotePath = () => {
