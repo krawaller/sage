@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue, set } from 'firebase/database'
+import { getDatabase, ref, onValue, set, remove } from 'firebase/database'
 import { FirebaseApp } from '@firebase/app'
 import { useFirebaseApp } from './service.firebase'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -47,12 +47,12 @@ export const makeQuestionService = (
         callback(data)
       })
     },
-    setQurrentQuestion(question: QuestionDef) {
+    setQurrentQuestion(question: QuestionDef | null) {
       const currentRef = ref(
         db,
         `presentations/${presentationId}/currentQuestion`
       )
-      set(currentRef, question)
+      return question ? set(currentRef, question) : remove(currentRef)
     },
   }
 }

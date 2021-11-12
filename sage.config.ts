@@ -3,6 +3,7 @@ import { SageConfig } from './sage/configTypes'
 
 const sageConfig: SageConfig = {
   components: {
+    brain: './sage/components/Brain',
     folder: './sage/components/Folder',
     root: './sage/components/Root',
     breadcrumbs: './sage/components/BreadCrumbs',

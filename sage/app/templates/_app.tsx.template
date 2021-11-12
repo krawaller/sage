@@ -13,9 +13,9 @@ import {
 } from '__SAGEPATH__/components/contexts'
 import type { SageLink, SageResource } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
-import { useObeyRemotePath } from '__SAGEPATH__/services/service.remote'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
 import Controls from '__CONTROLSPATH__' // Controlled via sage.config
+import Brain from '__BRAINPATH__' // Controlled via sage.config
 
 import css from './app.module.css'
 
@@ -28,9 +28,9 @@ const ResourcePage = (props: ResourcePageProps) => {
   const { Component, pageProps } = props
   const { resource } = Component
   const { cssVars } = useCssVars()
-  useObeyRemotePath()
   return (
     <>
+      <Brain />
       <Head>
         <title>{sageLinkMap[resource.id].short}</title>
       </Head>

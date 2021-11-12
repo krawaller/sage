@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
-import { useRemoteZoom } from '../services/service.remote'
 import { useCssVars } from './contexts'
 import css from './Controls.module.css'
 
@@ -21,12 +20,6 @@ export const Controls = (props: ControlsProps) => {
     // filter out updates caused by remote
     e?.target?.value !== undefined && updateCssVars({ zoom: e.target.value })
   }, [])
-  const handleRemoteZoomChange = useCallback(
-    (zoom) =>
-      updateCssVars({ zoom: Math.max(zoomMin, Math.min(zoom, zoomMax)) }),
-    [updateCssVars]
-  )
-  useRemoteZoom(handleRemoteZoomChange)
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
   const [isFullscreen, setIsFullScreen] = useState(
