@@ -2,6 +2,7 @@ import { FirebaseApp } from '@firebase/app'
 import {
   GithubAuthProvider,
   signInWithPopup,
+  signInAnonymously,
   signOut,
   onAuthStateChanged,
   User,
@@ -11,6 +12,28 @@ import { useEffect, useMemo, useState } from 'react'
 import { useFirebaseApp } from './service.firebase'
 
 export const makeAuthService = (app: FirebaseApp) => ({
+  signInAnonymously: async () => {
+    const auth = getAuth(app)
+    try {
+      const result = await signInAnonymously(auth)
+      if (!result.user) {
+        throw new Error(
+          'Anonymous login failed, no user info returned from auth service'
+        )
+      }
+      return {
+        error: null,
+        data: {
+          user: result.user,
+        },
+      }
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      }
+    }
+  },
   signInWithGithubPopup: async () => {
     const auth = getAuth(app)
     const provider = new GithubAuthProvider()
@@ -27,7 +50,6 @@ export const makeAuthService = (app: FirebaseApp) => ({
       }
     } catch (error: any) {
       error.credential = GithubAuthProvider.credentialFromError(error)
-      console.log('ERROR', error)
       return {
         data: null,
         error,

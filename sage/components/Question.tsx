@@ -3,6 +3,7 @@ import { useCurrentAuth } from '../services/service.auth'
 import {
   useQuestionService,
   useQuestionAnswers,
+  QuestionDef,
 } from '../services/service.question'
 import { SageFileComponent } from './componentTypes'
 
@@ -15,7 +16,7 @@ export const Question: SageFileComponent<Record<string, any>> = (props) => {
   useEffect(() => {
     if (user) {
       // call will fail if we're not logged in
-      questionService.setQurrentQuestion(processed)
+      questionService.setQurrentQuestion(processed as QuestionDef)
     }
   }, [user])
   return <pre>{JSON.stringify({ question: processed, answers }, null, 2)}</pre>

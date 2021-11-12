@@ -47,7 +47,9 @@ const thresholdCallback = (
     const at = Date.now()
     if (at - start > threshold) {
       const data = snapshot.val()
-      callback(data)
+      if (typeof window !== 'undefined') {
+        callback(data)
+      }
     }
   })
 }

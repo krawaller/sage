@@ -4,6 +4,7 @@ import { writeShell } from './writeShell'
 import { writeResource } from './writeResource'
 import { seedPublic } from './seedPublic'
 import { writeRemote } from './writeRemote'
+import { writeVoter } from './writeVoter'
 
 type WriteOpts = {
   resources: SageResource[]
@@ -18,6 +19,7 @@ export const writeNextApp = async (opts: WriteOpts) => {
     seedPublic({ sagePath }),
     writeShell({ sagePath, config, linkMap }),
     writeRemote({ sagePath, config }),
+    writeVoter({ sagePath, config }),
     ...resources.map((resource) =>
       writeResource({ linkMap, resource, sagePath, config })
     ),

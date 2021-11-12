@@ -12,6 +12,7 @@ const sageConfig: SageConfig = {
     markdown: './sage/components/Markdown',
     question: './sage/components/Question',
     remote: './sage/components/Remote',
+    voter: './sage/components/Voter',
   },
   processors: {
     code: codePlugin,

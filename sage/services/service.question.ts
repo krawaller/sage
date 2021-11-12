@@ -4,6 +4,12 @@ import { useFirebaseApp } from './service.firebase'
 import { useEffect, useMemo, useState } from 'react'
 import { useSettings } from '../components/contexts'
 
+export type QuestionDef = {
+  id: string
+  question: string
+  options: Record<string, string>
+}
+
 export const makeQuestionService = (
   app: FirebaseApp,
   presentationId: string
@@ -23,7 +29,17 @@ export const makeQuestionService = (
         callback(data)
       })
     },
-    setQurrentQuestion(question: any) {
+    currentQuestion(callback: (question: QuestionDef) => void) {
+      const currentRef = ref(
+        db,
+        `presentations/${presentationId}/currentQuestion`
+      )
+      return onValue(currentRef, (snapshot) => {
+        const data = snapshot.val()
+        callback(data)
+      })
+    },
+    setQurrentQuestion(question: QuestionDef) {
       const currentRef = ref(
         db,
         `presentations/${presentationId}/currentQuestion`
@@ -43,10 +59,19 @@ export const useQuestionService = () => {
 }
 
 export const useQuestionAnswers = (questionId: string) => {
-  const dataService = useQuestionService()
+  const questionService = useQuestionService()
   const [answers, setAnswers] = useState<Record<string, string | number>>()
   useEffect(() => {
-    return dataService.quizAnswers(questionId, setAnswers)
-  }, [questionId, dataService])
+    return questionService.quizAnswers(questionId, setAnswers)
+  }, [questionId, questionService])
   return answers
+}
+
+export const useCurrentQuestion = () => {
+  const questionService = useQuestionService()
+  const [question, setQuestion] = useState<QuestionDef | null>()
+  useEffect(() => {
+    return questionService.currentQuestion(setQuestion)
+  }, [questionService])
+  return question
 }
