@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
-import { useCurrentQuestion } from '../services/service.question'
+import { useCurrentQuestion, useRespond } from '../services/service.question'
 
 import css from './Voter.module.css'
 
@@ -17,9 +17,6 @@ export const Voter = () => {
       })
     }
   }, [auth])
-  if (auth) {
-    return <VoterInner />
-  }
   return (
     <div className={css.voter}>
       {auth ? <VoterInner /> : err ? 'Nooo, went boom :(' : '...loading...'}
@@ -29,10 +26,22 @@ export const Voter = () => {
 
 const VoterInner = () => {
   const currentQuestion = useCurrentQuestion()
+  const respond = useRespond()
+  if (!currentQuestion) {
+    return <p>Waiting for question...</p>
+  }
+  const { question, options } = currentQuestion
   return (
-    <div className={css.voter}>
-      <pre>{JSON.stringify(currentQuestion, null, 2)}</pre>
-    </div>
+    <>
+      <p>{question}</p>
+      <div className={css.options}>
+        {Object.entries(options).map(([optionId, { text, emoji }]) => (
+          <button onClick={() => respond(optionId)} key={optionId}>
+            {emoji} {text}
+          </button>
+        ))}
+      </div>
+    </>
   )
 }
 

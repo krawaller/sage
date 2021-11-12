@@ -1,5 +1,8 @@
 {
   "id": "really",
   "question": "Oh really?",
-  "options": ["YES!", "absolutely not"]
+  "options": [
+    { "id": "megaYes", "text": "YES!", "emoji": "🎉" },
+    { "id": "megaNo", "text": "absolutely not", "emoji": "💀" }
+  ]
 }

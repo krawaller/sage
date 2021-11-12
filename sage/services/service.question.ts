@@ -1,13 +1,14 @@
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { FirebaseApp } from '@firebase/app'
 import { useFirebaseApp } from './service.firebase'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSettings } from '../components/contexts'
+import { useCurrentAuth } from './service.auth'
 
 export type QuestionDef = {
   id: string
   question: string
-  options: Record<string, string>
+  options: Record<string, { text: string; emoji: string }>
 }
 
 export const makeQuestionService = (
@@ -16,20 +17,27 @@ export const makeQuestionService = (
 ) => {
   const db = getDatabase(app)
   return {
-    quizAnswers(
+    subcribeToReplies(
       questionId: string,
       callback: (answers: Record<string, string | number>) => void
     ) {
       const answerRef = ref(
         db,
-        `presentations/${presentationId}/questions/${questionId}/replies`
+        `presentations/${presentationId}/replies/${questionId}`
       )
       return onValue(answerRef, (snapshot) => {
         const data = snapshot.val()
         callback(data)
       })
     },
-    currentQuestion(callback: (question: QuestionDef) => void) {
+    respond(userId: string, questionId: string, optionId: string) {
+      const responseRef = ref(
+        db,
+        `presentations/${presentationId}/replies/${questionId}/${userId}`
+      )
+      return set(responseRef, optionId)
+    },
+    subscribeToCurrentQuestion(callback: (question: QuestionDef) => void) {
       const currentRef = ref(
         db,
         `presentations/${presentationId}/currentQuestion`
@@ -62,7 +70,7 @@ export const useQuestionAnswers = (questionId: string) => {
   const questionService = useQuestionService()
   const [answers, setAnswers] = useState<Record<string, string | number>>()
   useEffect(() => {
-    return questionService.quizAnswers(questionId, setAnswers)
+    return questionService.subcribeToReplies(questionId, setAnswers)
   }, [questionId, questionService])
   return answers
 }
@@ -71,7 +79,22 @@ export const useCurrentQuestion = () => {
   const questionService = useQuestionService()
   const [question, setQuestion] = useState<QuestionDef | null>()
   useEffect(() => {
-    return questionService.currentQuestion(setQuestion)
+    return questionService.subscribeToCurrentQuestion(setQuestion)
   }, [questionService])
   return question
+}
+
+export const useRespond = () => {
+  const question = useCurrentQuestion()
+  const questionService = useQuestionService()
+  const auth = useCurrentAuth()
+  return useCallback(
+    (optionId: string) => {
+      if (question && auth) {
+        return questionService.respond(auth.uid, question.id, optionId)
+      }
+      return Promise.reject(new Error('No question!'))
+    },
+    [question, questionService, auth]
+  )
 }

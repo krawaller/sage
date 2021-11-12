@@ -1,5 +1,8 @@
 {
   "id": "sure",
   "question": "Are you quite sure?!",
-  "options": ["OMG YEEEES!", "maybe not"]
+  "options": [
+    { "id": "omgYes", "text": "OMG YEEES!", "emoji": "👍" },
+    { "id": "omgNo", "text": "nah", "emoji": "👎" }
+  ]
 }
