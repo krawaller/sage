@@ -66,11 +66,13 @@ export const useQuestionService = () => {
   )
 }
 
-export const useQuestionAnswers = (questionId: string) => {
+export const useQuestionAnswers = (questionId?: string) => {
   const questionService = useQuestionService()
   const [answers, setAnswers] = useState<Record<string, string | number>>()
   useEffect(() => {
-    return questionService.subcribeToReplies(questionId, setAnswers)
+    if (questionId) {
+      return questionService.subcribeToReplies(questionId, setAnswers)
+    }
   }, [questionId, questionService])
   return answers
 }
@@ -82,6 +84,15 @@ export const useCurrentQuestion = () => {
     return questionService.subscribeToCurrentQuestion(setQuestion)
   }, [questionService])
   return question
+}
+
+export const useMyReply = () => {
+  const question = useCurrentQuestion()
+  const questionService = useQuestionService()
+  const [myReply, setMyReply] = useState<string | number | null | undefined>()
+  const auth = useCurrentAuth()
+  const answers = useQuestionAnswers(question?.id)
+  return answers?.[auth?.uid ?? '']
 }
 
 export const useRespond = () => {
