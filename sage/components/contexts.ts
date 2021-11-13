@@ -2,6 +2,12 @@ import { createContext, useCallback, useContext, useState } from 'react'
 import { SageConfig } from '../configTypes'
 import { SageLink, SageResource } from '../processSource/processTypes'
 
+export const SageDomainContext = createContext('unknown')
+
+export const useDomain = () => {
+  return useContext(SageDomainContext)
+}
+
 export const SageLinkMapContext = createContext<Record<string, SageLink>>({})
 
 export const useLinkMap = () => {

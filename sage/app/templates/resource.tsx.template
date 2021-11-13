@@ -11,3 +11,5 @@ const __COMPONENTNAME__: __PAGETYPE__ = (props) => {
 export default __COMPONENTNAME__
 
 __COMPONENTNAME__.resource = __RESOURCE__
+
+__COMPONENTNAME__.domain = 'presentation'

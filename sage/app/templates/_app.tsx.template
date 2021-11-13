@@ -4,6 +4,7 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import {
+  SageDomainContext,
   SageLinkMapContext,
   SageResourceContext,
   SageSettingsContext,
@@ -55,30 +56,32 @@ const ResourcePage = (props: ResourcePageProps) => {
 const SageApp = (props: AppProps) => {
   const { Component: NextComponent, pageProps } = props
   const Component = NextComponent as unknown as SagePage
-  const { resource } = Component
+  const { resource, domain } = Component
   const cssCtxVal = useCssVarsTopLevel(sageSettings.initialCssVars)
   return (
-    <SageLinkMapContext.Provider value={sageLinkMap}>
-      <SageResourceContext.Provider value={resource}>
-        <SageSettingsContext.Provider value={sageSettings}>
-          <SageCssVarsContext.Provider value={cssCtxVal}>
-            <Head>
-              <meta charSet="utf-8" />
-              <meta
-                name="viewport"
-                content="initial-scale=1.0, width=device-width"
-              />
-              <link rel="stylesheet" href="/global.css" />
-            </Head>
-            {resource ? (
-              <ResourcePage Component={Component} pageProps={pageProps} />
-            ) : (
-              <Component {...pageProps} />
-            )}
-          </SageCssVarsContext.Provider>
-        </SageSettingsContext.Provider>
-      </SageResourceContext.Provider>
-    </SageLinkMapContext.Provider>
+    <SageDomainContext.Provider value={domain || 'unknown'}>
+      <SageLinkMapContext.Provider value={sageLinkMap}>
+        <SageResourceContext.Provider value={resource}>
+          <SageSettingsContext.Provider value={sageSettings}>
+            <SageCssVarsContext.Provider value={cssCtxVal}>
+              <Head>
+                <meta charSet="utf-8" />
+                <meta
+                  name="viewport"
+                  content="initial-scale=1.0, width=device-width"
+                />
+                <link rel="stylesheet" href="/global.css" />
+              </Head>
+              {resource ? (
+                <ResourcePage Component={Component} pageProps={pageProps} />
+              ) : (
+                <Component {...pageProps} />
+              )}
+            </SageCssVarsContext.Provider>
+          </SageSettingsContext.Provider>
+        </SageResourceContext.Provider>
+      </SageLinkMapContext.Provider>
+    </SageDomainContext.Provider>
   )
 }
 

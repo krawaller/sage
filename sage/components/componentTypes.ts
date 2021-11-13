@@ -18,7 +18,8 @@ export type SageComponent<R extends SageResource = SageResource> = (
 ) => JSX.Element | null
 
 export type SagePage<R extends SageResource = SageResource> =
-  SageComponent<R> & { resource: R }
+  SageComponent<R> & { resource: R; domain: string }
+export type SageUtilPage = SageComponent & { domain: string }
 
 export type SageFolderComponent = SageComponent<SageFolderResource>
 export type SageRootComponent = SageComponent<SageRootResource>

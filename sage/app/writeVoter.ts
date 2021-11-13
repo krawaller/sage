@@ -12,9 +12,10 @@ type WriteVoteOpts = {
 }
 
 export const writeVoter = async (opts: WriteVoteOpts) => {
-  const { config } = opts
+  const { config, sagePath } = opts
   const voterTemplate = (await fs.readFile(templatePath)).toString()
   const comp = config.components.voter
+  const relSagePath = path.join('../', sagePath) // no need when npm package
   if (!comp) {
     throw new Error(`No configured component for "voter"`)
   }
@@ -22,7 +23,9 @@ export const writeVoter = async (opts: WriteVoteOpts) => {
   await fs.writeFile(
     path.join(pagesPath, 'vote.tsx'),
     prettier.format(
-      voterTemplate.replace(/__VOTERPATH__/g, path.join('../', comp)),
+      voterTemplate
+        .replace(/__VOTERPATH__/g, path.join('../', comp))
+        .replace(/__SAGEPATH__/g, relSagePath),
       { filepath: 'foo.tsx' }
     )
   )

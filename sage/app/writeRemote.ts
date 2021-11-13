@@ -12,9 +12,10 @@ type WriteResourceOpts = {
 }
 
 export const writeRemote = async (opts: WriteResourceOpts) => {
-  const { config } = opts
+  const { config, sagePath } = opts
   const remoteTemplate = (await fs.readFile(templatePath)).toString()
   const comp = config.components.remote
+  const relSagePath = path.join('../', sagePath) // no need when npm package
   if (!comp) {
     throw new Error(`No configured component for "Remote"`)
   }
@@ -22,7 +23,9 @@ export const writeRemote = async (opts: WriteResourceOpts) => {
   await fs.writeFile(
     path.join(pagesPath, 'remote.tsx'),
     prettier.format(
-      remoteTemplate.replace(/__REMOTEPATH__/g, path.join('../', comp)),
+      remoteTemplate
+        .replace(/__REMOTEPATH__/g, path.join('../', comp))
+        .replace(/__SAGEPATH__/g, relSagePath),
       { filepath: 'foo.tsx' }
     )
   )
