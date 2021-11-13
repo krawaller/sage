@@ -13,7 +13,7 @@ export const firebaseService = {
 }
 
 export const useFirebaseApp = () => {
-  const settings = useSettings()
+  const { firebase } = useSettings()
   const domain = useDomain()
-  return firebaseService.configureApp(settings.firebase, domain)
+  return firebaseService.configureApp(firebase, domain)
 }

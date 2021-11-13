@@ -66,7 +66,7 @@ export const useQuestionService = () => {
   )
 }
 
-export const useQuestionAnswers = (questionId?: string) => {
+export const useQuestionResponses = (questionId?: string) => {
   const questionService = useQuestionService()
   const [answers, setAnswers] = useState<Record<string, string | number>>()
   useEffect(() => {
@@ -75,6 +75,21 @@ export const useQuestionAnswers = (questionId?: string) => {
     }
   }, [questionId, questionService])
   return answers
+}
+
+export const useQuestionStats = (questionId?: string) => {
+  const responses = useQuestionResponses(questionId)
+  return useMemo(() => {
+    const list = Object.values(responses || {})
+    const perOption = list.reduce((memo, optId) => {
+      memo[optId] = (memo[optId] || 0) + 1
+      return memo
+    }, {} as Record<string, number>)
+    return {
+      total: list.length,
+      perOption,
+    }
+  }, [responses])
 }
 
 export const useCurrentQuestion = () => {
@@ -88,10 +103,8 @@ export const useCurrentQuestion = () => {
 
 export const useMyReply = () => {
   const question = useCurrentQuestion()
-  const questionService = useQuestionService()
-  const [myReply, setMyReply] = useState<string | number | null | undefined>()
   const auth = useCurrentAuth()
-  const answers = useQuestionAnswers(question?.id)
+  const answers = useQuestionResponses(question?.id)
   return answers?.[auth?.uid ?? '']
 }
 

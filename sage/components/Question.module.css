@@ -1,0 +1,49 @@
+.questionContainer {
+  --total: 0; /* Updated by JS */
+  width: 100%;
+}
+
+.question {
+  text-align: center;
+  margin-bottom: var(--pad);
+}
+
+.optionContainer {
+  display: flex;
+  width: 100%;
+  --count: 0; /* Updated by JS */
+  margin-bottom: var(--pad);
+}
+
+.optionContainer > :first-child {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: var(--pad);
+  line-height: 100%;
+}
+
+.optionContainer > :last-child {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  line-height: 100%;
+}
+
+.optionContainer > :last-child:before {
+  --extra-width: var(--pad);
+  --parent-ratio: 80%;
+  --factor: calc(var(--count) / var(--total));
+  --width: calc(var(--extra-width) + calc(var(--parent-ratio) * var(--factor)));
+  display: inline-block;
+  content: '';
+  height: 100%;
+  width: var(--width);
+  transition: width 0.3s ease;
+  background-color: violet;
+  margin-right: var(--pad);
+}
