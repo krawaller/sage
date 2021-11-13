@@ -1,18 +1,19 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from '@firebase/app'
-import { useSettings } from '../components/contexts'
+import { useDomain, useSettings } from '../components/contexts'
 
-let app: FirebaseApp
+const apps: Record<string, FirebaseApp> = {}
 
 export const firebaseService = {
-  configureApp: (config: FirebaseOptions) => {
-    if (!app) {
-      app = initializeApp(config, 'SAGEVOTE')
+  configureApp: (config: FirebaseOptions, domain: string) => {
+    if (!apps[domain]) {
+      apps[domain] = initializeApp(config, domain)
     }
-    return app
+    return apps[domain]
   },
 }
 
 export const useFirebaseApp = () => {
   const settings = useSettings()
-  return firebaseService.configureApp(settings.firebase)
+  const domain = useDomain()
+  return firebaseService.configureApp(settings.firebase, domain)
 }
