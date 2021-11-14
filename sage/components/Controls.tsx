@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { Button, NavbarDivider, Slider } from '@blueprintjs/core'
 import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
@@ -16,9 +16,9 @@ export const Controls = (props: ControlsProps) => {
     emojis,
   } = settings
   const { cssVars, updateCssVars } = useCssVars()
-  const handleZoomChange = useCallback((e) => {
+  const handleZoomChange = useCallback((zoom) => {
     // filter out updates caused by remote
-    e?.target?.value !== undefined && updateCssVars({ zoom: e.target.value })
+    zoom !== undefined && updateCssVars({ zoom })
   }, [])
   const authService = useAuthService()
   const currentUser = useCurrentAuth()
@@ -35,33 +35,30 @@ export const Controls = (props: ControlsProps) => {
     }
   }, [])
   return (
-    <div className={css.controls}>
-      <input
-        className="zoomer"
-        type="range"
+    <>
+      <Slider
         min={zoomMin}
         max={zoomMax}
-        step=".1"
-        value={cssVars['--zoom']}
+        stepSize={0.1}
+        value={cssVars['--zoom'] as number}
         onChange={handleZoomChange}
+        labelRenderer={false}
       />
-
-      <button
-        className={classNames(isFullscreen && 'pressed')}
-        onClick={handleToggleFullScreen}
-      >
+      <NavbarDivider />
+      <Button minimal active={isFullscreen} onClick={handleToggleFullScreen}>
         {emojis.fullscreen}
-      </button>
+      </Button>
+      <NavbarDivider />
       {currentUser ? (
-        <button className="pressed" onClick={authService.signOut}>
+        <Button minimal active onClick={authService.signOut}>
           {emojis.login}
-        </button>
+        </Button>
       ) : (
-        <button onClick={authService.signInWithGithubPopup}>
+        <Button minimal onClick={authService.signInWithGithubPopup}>
           {emojis.login}
-        </button>
+        </Button>
       )}
-    </div>
+    </>
   )
 }
 

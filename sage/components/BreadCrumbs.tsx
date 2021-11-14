@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import {
+  Breadcrumbs as BreadcrumbsBP,
+  Breadcrumb as BreadcrumbBP,
+  BreadcrumbProps as BreadcrumbBPProps,
+} from '@blueprintjs/core'
 import { SageLink, SageResource } from '../processSource/processTypes'
 import { ResourceLink } from './ResourceLink'
-
-import css from './Breadcrumbs.module.css'
 
 type BreadCrumbProps = {
   linkMap: Record<string, SageLink>
@@ -11,14 +14,28 @@ type BreadCrumbProps = {
 
 export const BreadCrumbs = (props: BreadCrumbProps) => {
   const { resource, linkMap } = props
-  return (
-    <nav className={css.nav}>
-      {resource.crumbs.map((id) => (
-        <ResourceLink key={id} link={linkMap[id]} />
-      ))}
-      <ResourceLink link={linkMap[resource.id]} naked />
-    </nav>
+  const renderer = useMemo(() => makeBreadCrumbRenderer(linkMap), [linkMap])
+  const bpProps = useMemo<BreadcrumbBPProps[]>(
+    () =>
+      resource.crumbs
+        .map((id) => ({
+          href: id,
+          current: false,
+        }))
+        .concat({ href: resource.id, current: true }),
+    [resource]
   )
+  return <BreadcrumbsBP items={bpProps} breadcrumbRenderer={renderer} />
 }
+
+const makeBreadCrumbRenderer =
+  (linkMap: Record<string, SageLink>) => (props: BreadcrumbBPProps) => {
+    const { href, current } = props
+    return (
+      <BreadcrumbBP current={current}>
+        <ResourceLink link={linkMap[href!]} naked={current} />
+      </BreadcrumbBP>
+    )
+  }
 
 export default BreadCrumbs

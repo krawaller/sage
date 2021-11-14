@@ -1,3 +1,4 @@
+import { Button } from '@blueprintjs/core'
 import React, { useCallback } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { useSetRemotePath, useSetRemoteZoom } from '../services/service.remote'
@@ -48,9 +49,9 @@ const RemoteInner = () => {
       />
       <div className={css['remote-links']}>
         {Object.values(linkMap).map((link) => (
-          <button key={link.path} onClick={() => setRemotePath(link.path)}>
+          <Button key={link.path} onClick={() => setRemotePath(link.path)}>
             <ResourceLink link={link} naked />
-          </button>
+          </Button>
         ))}
       </div>
     </div>

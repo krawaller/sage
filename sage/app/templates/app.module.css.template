@@ -6,13 +6,6 @@
   flex-direction: column;
 }
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #777;
-}
-
 .content {
   flex: 1;
   display: flex;
