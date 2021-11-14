@@ -2,8 +2,8 @@ import { Button, NavbarDivider, Slider } from '@blueprintjs/core'
 import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
+import { AsyncButton } from './AsyncButton'
 import { useCssVars } from './contexts'
-import css from './Controls.module.css'
 
 export type ControlsProps = {
   settings: SageSettings
@@ -49,15 +49,17 @@ export const Controls = (props: ControlsProps) => {
         {emojis.fullscreen}
       </Button>
       <NavbarDivider />
-      {currentUser ? (
-        <Button minimal active onClick={authService.signOut}>
-          {emojis.login}
-        </Button>
-      ) : (
-        <Button minimal onClick={authService.signInWithGithubPopup}>
-          {emojis.login}
-        </Button>
-      )}
+      <AsyncButton
+        minimal
+        active={Boolean(currentUser)}
+        onClick={() =>
+          currentUser
+            ? authService.signOut()
+            : authService.signInWithGithubPopup()
+        }
+      >
+        {emojis.login}
+      </AsyncButton>
     </>
   )
 }

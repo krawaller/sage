@@ -1,5 +1,3 @@
-import { Button } from '@blueprintjs/core'
-import classNames from 'classnames'
 import React, { useEffect, useState } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import {
@@ -7,6 +5,7 @@ import {
   useMyReply,
   useRespond,
 } from '../services/service.question'
+import { AsyncButton } from './AsyncButton'
 import { Emoji } from './Emoji'
 
 import css from './Voter.module.css'
@@ -44,7 +43,7 @@ const VoterInner = () => {
       <p>{question}</p>
       <div className={css.options}>
         {Object.entries(options).map(([optionId, { text, emoji }]) => (
-          <Button
+          <AsyncButton
             active={myReply === optionId}
             onClick={() => respond(optionId)}
             key={optionId}
