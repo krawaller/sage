@@ -5,6 +5,7 @@ export type ProcessFileOutput<P = any> = {
   meta: Record<string, any>
   kind: string
   processed: P
+  imports: Record<string, string>
 }
 
 export type ProcessDirectoryOutput = {

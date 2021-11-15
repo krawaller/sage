@@ -3,9 +3,11 @@
 import React from 'react'
 import type { __PAGETYPE__ } from '__SAGEPATH__/components'
 import __INNERNAME__ from '__INNERPATH__' // Controlled via sage.config
+__IMPORTLINES__
 
+__IMPORTOBJ__
 const __COMPONENTNAME__: __PAGETYPE__ = (props) => {
-  return <__INNERNAME__ {...props} />
+  return <__INNERNAME__ {...props} __IMPORTPROP__ />
 }
 
 export default __COMPONENTNAME__
@@ -13,3 +15,5 @@ export default __COMPONENTNAME__
 __COMPONENTNAME__.resource = __RESOURCE__
 
 __COMPONENTNAME__.domain = 'presentation'
+
+// __IMPORTPROPS__

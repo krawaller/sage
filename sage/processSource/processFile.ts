@@ -30,9 +30,12 @@ export const processFile = async (
     meta,
     filePath,
   })
+  const imports =
+    plugin.importer?.({ content, meta, filePath, processed }) ?? {}
   return {
     ...fileData,
     meta,
     processed,
+    imports,
   }
 }

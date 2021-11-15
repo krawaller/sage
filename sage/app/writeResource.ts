@@ -42,6 +42,11 @@ export const writeResource = async (opts: WriteResourceOpts) => {
     resource.type === 'root'
       ? pagesPath
       : path.join(pagesPath, link.path.replace(/^\//, ''))
+  const imports = resource.type === 'file' ? resource.imports : {}
+  const importLines = Object.entries(imports)
+    .map(([name, p]) => `import ${name} from "${path.join(depth, p)}"; `)
+    .join('\n')
+  const importObj = `const imports = { ${Object.keys(imports)} };`
   await fs.ensureDir(outFolder)
   await fs.writeFile(
     path.join(outFolder, 'index.tsx'),
@@ -52,7 +57,13 @@ export const writeResource = async (opts: WriteResourceOpts) => {
         .replace(/__PAGETYPE__/g, tsType)
         .replace(/__INNERNAME__/g, capitalise(compKind))
         .replace(/__COMPONENTNAME__/g, capitalise(compKind) + 'Page')
-        .replace(/__RESOURCE__/g, JSON.stringify(resource, null, 2)),
+        .replace(/__RESOURCE__/g, JSON.stringify(resource, null, 2))
+        .replace(/__IMPORTLINES__/, importLines)
+        .replace(/__IMPORTOBJ__/g, importLines.length ? importObj : '')
+        .replace(
+          /__IMPORTPROP__/g,
+          importLines.length ? 'imports={imports}' : 'imports={{}}'
+        ),
       { filepath: 'foo.tsx' }
     )
   )

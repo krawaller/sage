@@ -9,7 +9,7 @@ import '@blueprintjs/core/lib/css/blueprint.css'
 
 type AppProps = { version: string }
 
-export const App: FunctionComponent<AppProps> = ({ version }) => {
+export const App = ({ version }: AppProps) => {
   const store = useMemo(makeProdStore, [])
   return (
     <Provider store={store}>

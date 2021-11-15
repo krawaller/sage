@@ -29,14 +29,16 @@ export const makeStore = (opts: MakeStoreOpts = {}): AppStore => {
     deps,
     consGetter = (({ action }) =>
       action.cons ? [action.cons] : []) as AppConsGetter,
-    initCons
+    initCons,
   } = opts
   const middlewares = []
   if (consGetter) {
     middlewares.push(createConsequenceMiddleware(consGetter, deps))
   }
 
-  const devToolsExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION__
+  const devToolsExtension = (
+    typeof window !== 'undefined' ? (window as any) : ({} as any)
+  ).__REDUX_DEVTOOLS_EXTENSION__
   if (typeof devToolsExtension === 'function') {
     enhancers.unshift(devToolsExtension())
   }
@@ -53,7 +55,7 @@ export const makeStore = (opts: MakeStoreOpts = {}): AppStore => {
     store.dispatch({
       type: '__APPINIT__',
       payload: undefined,
-      cons: initCons
+      cons: initCons,
     })
   }
 
@@ -63,6 +65,6 @@ export const makeStore = (opts: MakeStoreOpts = {}): AppStore => {
 export const makeProdStore = () => {
   return makeStore({
     deps: { rebrickable: rebrickableService },
-    initCons: ({ dispatch }) => dispatch(loadThemesInit())
+    initCons: ({ dispatch }) => dispatch(loadThemesInit()),
   })
 }

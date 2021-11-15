@@ -8,22 +8,13 @@ body {
   --pad: 6px;
 }
 
-button {
-  border-radius: calc(var(--pad) / 2);
-  border: 1px solid #555;
-  background-color: #eee;
-  cursor: pointer;
+.bp4-menu {
+  max-height: 80vh;
+  overflow: auto;
 }
 
-button:hover {
-  background-color: #ddd;
-}
-
-button:active {
-  background-color: #ccc;
-}
-
-button.pressed {
-  background-color: cornflowerblue;
-  color: white;
+.bp4-popover-wrapper,
+.bp4-popover-target {
+  width: 100%;
+  display: block;
 }

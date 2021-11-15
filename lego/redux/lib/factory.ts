@@ -9,28 +9,20 @@ import {
 import { Reducer } from './types/reducer'
 import { Consequence } from './types/consequence'
 
-type FactoryOpts<
-  A extends Action<string, any, any, any>,
-  Signature extends Array<any> & { 0: any } = [ActionPayload<A>]
-> = {
+type FactoryOpts<A, S> = {
   type: ActionType<A>
-  mapper?: (...args: Signature) => ActionPayload<A>
+  mapper?: (...args: any) => ActionPayload<A>
   reducer: Reducer<ActionState<A>, ActionPayload<A>>
   isError?: boolean
   cons?: Consequence<ActionState<A>, ActionDeps<A>>
 }
 
-export const factory = <
-  A extends Action<string, any, any, any>,
-  Sig extends Array<any> & { 0: any } = [ActionPayload<A>]
->(
-  blueprint: FactoryOpts<A, Sig>
-) => {
+export const factory = (blueprint: FactoryOpts<any, any>) => {
   const { type, reducer, isError, mapper, cons } = blueprint
   if (cons) {
     cons.displayName = type
   }
-  const creator = ((...args: Sig) => ({
+  const creator = ((...args: any) => ({
     type,
     payload: mapper ? mapper(...args) : args[0],
     ...(reducer && {
@@ -42,9 +34,9 @@ export const factory = <
     ...(cons && {
       cons,
     }),
-  })) as ActionCreator<A, Sig>
+  })) as ActionCreator<any, any>
   creator.actionType = blueprint.type
   const guard = (action: Action<string, any, any, any>): action is A =>
     action.type === (type as string)
-  return <const>[creator, guard]
+  return [creator, guard] as const
 }

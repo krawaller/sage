@@ -1,5 +1,11 @@
-import { codePlugin, graphPlugin, markdownPlugin, questionPlugin } from './sage'
-import { SageConfig } from './sage/configTypes'
+import {
+  codePlugin,
+  graphPlugin,
+  markdownPlugin,
+  questionPlugin,
+  appletPlugin,
+} from './sage'
+import type { SageConfig } from './sage/configTypes'
 
 const sageConfig: SageConfig = {
   components: {
@@ -14,12 +20,14 @@ const sageConfig: SageConfig = {
     question: './sage/components/Question',
     remote: './sage/components/Remote',
     voter: './sage/components/Voter',
+    applet: './sage/components/Applet',
   },
   processors: {
     code: codePlugin,
     graph: graphPlugin,
     markdown: markdownPlugin,
     question: questionPlugin,
+    applet: appletPlugin,
   },
   settings: {
     presentationId: 'reduxStuff',
@@ -37,12 +45,13 @@ const sageConfig: SageConfig = {
     emojis: {
       folder: '📁',
       root: '🏠',
-      code: '💻',
+      code: '⌨️',
       question: '🙋',
       graph: '💭',
       markdown: '📖',
       login: '🔑',
       fullscreen: '🐡',
+      applet: '💻',
     },
     controls: {
       zoomMin: 1,
