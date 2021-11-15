@@ -4,12 +4,12 @@ import { processSource } from './sage'
 import config from './sage.config'
 import { writeNextApp } from './sage/app'
 
-const seed = path.join(__dirname, 'seed')
+const sourcePath = path.join(__dirname, 'presentation')
 
 ;(async () => {
   console.log('LETS SEE...')
   const result = await processSource({
-    sourcePath: seed,
+    sourcePath,
     plugins: config.processors,
   })
   await fs.remove(path.join(__dirname, 'pages'))
