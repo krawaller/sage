@@ -2,8 +2,6 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 import { selectCurrentSet } from '../redux'
 
-import { Guess } from './Guess'
-
 export const Set: FunctionComponent = () => {
   const set = useSelector(selectCurrentSet)!
   return (
@@ -20,11 +18,9 @@ export const Set: FunctionComponent = () => {
           width: '150px',
           paddingLeft: '10px',
           flexGrow: 0,
-          flexShrink: 0
+          flexShrink: 0,
         }}
-      >
-        <Guess />
-      </div>
+      ></div>
     </div>
   )
 }

@@ -15,6 +15,5 @@ body {
 
 .bp4-popover-wrapper,
 .bp4-popover-target {
-  width: 100%;
   display: block;
 }

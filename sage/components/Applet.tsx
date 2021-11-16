@@ -9,7 +9,7 @@ import type {
 
 export const Code: SageFileComponent<
   AppletDefinition,
-  AppletImports<{ version: number }>
+  AppletImports<{ version: string }>
 > = (props) => {
   const {
     resource,
