@@ -1,4 +1,10 @@
-import { createStore, compose, applyMiddleware, StoreEnhancer } from 'redux'
+import {
+  createStore,
+  compose,
+  applyMiddleware,
+  StoreEnhancer,
+  Middleware,
+} from 'redux'
 import { initialAppState } from './initialAppState'
 import { rootReducer } from './rootReducer'
 import { AppState, AppStore, AppConsGetter, AppCons } from './types'
@@ -9,6 +15,7 @@ import { loadThemesInit } from './slices/rebrickable/actions'
 export type MakeStoreOpts = {
   initialState?: AppState
   enhancers?: StoreEnhancer[]
+  middlewares?: Middleware[]
   deps?: any
   consGetter?: AppConsGetter
   initCons?: AppCons
@@ -18,14 +25,14 @@ export const makeStore = (opts: MakeStoreOpts = {}): AppStore => {
   const {
     initialState,
     enhancers = [],
+    middlewares = [],
     deps,
     consGetter = (({ action }) =>
       action.cons ? [action.cons] : []) as AppConsGetter,
     initCons,
   } = opts
-  const middlewares = []
   if (consGetter) {
-    middlewares.push(createConsequenceMiddleware(consGetter, deps))
+    middlewares.unshift(createConsequenceMiddleware(consGetter, deps))
   }
 
   const devToolsExtension = (
@@ -44,19 +51,22 @@ export const makeStore = (opts: MakeStoreOpts = {}): AppStore => {
   )
 
   if (initCons) {
-    store.dispatch({
-      type: '__APPINIT__',
-      payload: undefined,
-      cons: initCons,
-    })
+    setTimeout(() => {
+      store.dispatch({
+        type: '__APPINIT__',
+        payload: undefined,
+        cons: initCons,
+      })
+    }, 0)
   }
 
   return store
 }
 
-export const makeProdStore = () => {
+export const makeProdStore = (middlewares?: Middleware[]) => {
   return makeStore({
     deps: { rebrickable: rebrickableService },
+    middlewares,
     initCons: ({ dispatch }) => dispatch(loadThemesInit()),
   })
 }

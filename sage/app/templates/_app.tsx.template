@@ -15,6 +15,10 @@ import {
   useCssVarsTopLevel,
   useCssVars,
 } from '__SAGEPATH__/services/service.css-vars'
+import {
+  SageLogServiceContext,
+  usePopulateLogServiceContext
+} from '__SAGEPATH__/services/service.log'
 import type { SageLink, SageResource } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
@@ -65,26 +69,29 @@ const SageApp = (props: AppProps) => {
   const Component = NextComponent as unknown as SagePage
   const { resource, domain } = Component
   const cssCtxVal = useCssVarsTopLevel(sageSettings.initialCssVars)
+  const logCtxVal = usePopulateLogServiceContext()
   return (
     <SageDomainContext.Provider value={domain || 'unknown'}>
       <SageLinkMapContext.Provider value={sageLinkMap}>
         <SageResourceContext.Provider value={resource}>
           <SageSettingsContext.Provider value={sageSettings}>
             <SageCssVarsContext.Provider value={cssCtxVal}>
-              <Head>
-                <meta charSet="utf-8" />
-                <meta
-                  name="viewport"
-                  content="initial-scale=1.0, width=device-width"
-                />
-                <link rel="stylesheet" href="/styles/global.css" />
-                <link rel="stylesheet" href="/styles/blueprint.css" />
-              </Head>
-              {resource ? (
-                <ResourcePage Component={Component} pageProps={pageProps} />
-              ) : (
-                <Component {...pageProps} />
-              )}
+              <SageLogServiceContext.Provider value={logCtxVal}>
+                <Head>
+                  <meta charSet="utf-8" />
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                  />
+                  <link rel="stylesheet" href="/styles/global.css" />
+                  <link rel="stylesheet" href="/styles/blueprint.css" />
+                </Head>
+                {resource ? (
+                  <ResourcePage Component={Component} pageProps={pageProps} />
+                ) : (
+                  <Component {...pageProps} />
+                )}
+              </SageLogServiceContext.Provider>
             </SageCssVarsContext.Provider>
           </SageSettingsContext.Provider>
         </SageResourceContext.Provider>
