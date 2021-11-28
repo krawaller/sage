@@ -1,3 +1,4 @@
+import { AppState } from '../..'
 import { Action, ActionPayload, ActionType, ActionState } from './action'
 import { Reducer } from './reducer'
 
@@ -9,6 +10,6 @@ export interface ActionCreator<
   (...args: ActionPayload<A> extends undefined ? void[] : Sig): {
     type: ActionType<A>
     payload: ActionPayload<A>
-    reducer: Reducer<ActionState<A>, ActionPayload<A>>
+    reducer: Reducer<AppState, any>
   }
 }

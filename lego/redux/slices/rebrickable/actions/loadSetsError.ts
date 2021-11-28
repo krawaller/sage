@@ -12,18 +12,15 @@ export type LoadSetsErrorAction = AppAction<
   LoadSetsErrorPayload
 >
 
-export const [loadSetsError, isLoadSetsError] = factory<
-  LoadSetsErrorAction,
-  [number, string]
->({
+export const [loadSetsError, isLoadSetsError] = factory({
   type: 'LOAD_SETS_ERROR',
   isError: true,
   mapper: (themeId: number, error: string) => ({ themeId, error }),
   reducer: (state, payload) => {
     const { themeId, error } = payload
-    return produce(state, draft => {
+    return produce(state, (draft) => {
       draft.rebrickable.themes.data![themeId].sets.loading = false
       draft.rebrickable.themes.data![themeId].sets.error = error
     })
-  }
+  },
 })

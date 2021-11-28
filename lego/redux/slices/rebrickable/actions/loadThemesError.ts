@@ -9,16 +9,14 @@ export type LoadThemesErrorAction = AppAction<
   LoadThemesErrorPayload
 >
 
-export const [loadThemesError, isLoadThemesError] = factory<
-  LoadThemesErrorAction
->({
+export const [loadThemesError, isLoadThemesError] = factory({
   type: 'LOAD_THEMES_ERROR',
   isError: true,
   reducer: (state, payload) => {
     const error = payload
-    return produce(state, draft => {
+    return produce(state, (draft) => {
       draft.rebrickable.themes.loading = false
       draft.rebrickable.themes.error = error
     })
-  }
+  },
 })

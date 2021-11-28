@@ -9,12 +9,12 @@ export type SetCurrentSetAction = AppAction<
   SetCurrentSetPayload
 >
 
-export const [setCurrentSet, isSetCurrentSet] = factory<SetCurrentSetAction>({
+export const [setCurrentSet, isSetCurrentSet] = factory({
   type: 'SET_CURRENT_SET',
   reducer: (state, payload) => {
-    return produce(state, draft => {
+    return produce(state, (draft) => {
       draft.ui.currentSetId = payload
       draft.guessingGame.guesses = []
     })
-  }
+  },
 })

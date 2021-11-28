@@ -17,21 +17,21 @@ export type LoadSetsInitAction = AppAction<
   LoadSetsInitPayload
 >
 
-export const [loadSetsInit, isLoadSetsInit] = factory<LoadSetsInitAction>({
+export const [loadSetsInit, isLoadSetsInit] = factory({
   type: 'LOAD_SETS_INIT',
   reducer: (state, payload) =>
-    produce(state, draft => {
+    produce(state, (draft) => {
       draft.rebrickable.themes.data![payload].sets = {
         loading: true,
         error: null,
-        data: null
+        data: null,
       }
     }),
   cons: ({ action, dispatch, deps }) => {
     const themeId = action.payload
     deps.rebrickable
       .getSetsForTheme(themeId)
-      .then(data => dispatch(loadSetsSuccess(themeId, data)))
-      .catch(error => dispatch(loadSetsError(themeId, error)))
-  }
+      .then((data) => dispatch(loadSetsSuccess(themeId, data)))
+      .catch((error) => dispatch(loadSetsError(themeId, error)))
+  },
 })

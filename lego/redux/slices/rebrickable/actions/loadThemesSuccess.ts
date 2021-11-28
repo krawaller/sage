@@ -11,15 +11,13 @@ export type LoadThemesSuccessAction = AppAction<
   LoadThemesSuccessPayload
 >
 
-export const [loadThemesSuccess, isLoadThemesSuccess] = factory<
-  LoadThemesSuccessAction
->({
+export const [loadThemesSuccess, isLoadThemesSuccess] = factory({
   type: 'LOAD_THEMES_SUCCESS',
   reducer: (state, payload) => {
     const data = payload
-    return produce(state, draft => {
+    return produce(state, (draft) => {
       draft.rebrickable.themes.loading = false
       draft.rebrickable.themes.data = data
     })
-  }
+  },
 })

@@ -6,10 +6,10 @@ type MakeGuessPayload = number // Just need the actual guess, setnumber is in UI
 
 export type MakeGuessAction = AppAction<'MAKE_GUESS', MakeGuessPayload>
 
-export const [makeGuess, isMakeGuess] = factory<MakeGuessAction>({
+export const [makeGuess, isMakeGuess] = factory({
   type: 'MAKE_GUESS',
   reducer: (state, payload) =>
-    produce(state, draft => {
+    produce(state, (draft) => {
       draft.guessingGame.guesses.push(payload)
-    })
+    }),
 })

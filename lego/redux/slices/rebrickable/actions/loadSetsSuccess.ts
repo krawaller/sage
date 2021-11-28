@@ -14,17 +14,14 @@ export type LoadSetsSuccessAction = AppAction<
   LoadSetsSuccessPayload
 >
 
-export const [loadSetsSuccess, isLoadSetsSuccess] = factory<
-  LoadSetsSuccessAction,
-  [number, ById<Set>]
->({
+export const [loadSetsSuccess, isLoadSetsSuccess] = factory({
   type: 'LOAD_SETS_SUCCESS',
   mapper: (themeId: number, data: ById<Set>) => ({ themeId, data }),
   reducer: (state, payload) => {
     const { data, themeId } = payload
-    return produce(state, draft => {
+    return produce(state, (draft) => {
       draft.rebrickable.themes.data![themeId].sets.loading = false
       draft.rebrickable.themes.data![themeId].sets.data = data
     })
-  }
+  },
 })
