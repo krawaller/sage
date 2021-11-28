@@ -24,6 +24,7 @@ import type { SagePage } from '__SAGEPATH__/components'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
 import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 import Brain from '__BRAINPATH__' // Controlled via sage.config
+import Log from '__LOGPATH__' // Controlled via sage.config
 
 import css from './app.module.css'
 
@@ -91,6 +92,7 @@ const SageApp = (props: AppProps) => {
                 ) : (
                   <Component {...pageProps} />
                 )}
+                <Log />
               </SageLogServiceContext.Provider>
             </SageCssVarsContext.Provider>
           </SageSettingsContext.Provider>

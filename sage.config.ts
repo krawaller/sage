@@ -14,6 +14,7 @@ const sageConfig: SageConfig = {
     root: './sage/components/Root',
     breadcrumbs: './sage/components/BreadCrumbs',
     controls: './sage/components/Controls',
+    log: './sage/components/Log',
     code: './sage/components/Code',
     graph: './sage/components/Graph',
     markdown: './sage/components/Markdown',
@@ -45,6 +46,7 @@ const sageConfig: SageConfig = {
     emojis: {
       folder: '📁',
       root: '🏠',
+      log: '🪵',
       code: '⌨️',
       question: '🙋',
       graph: '💭',

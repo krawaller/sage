@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { useCssVars } from '../services/service.css-vars'
+import { useLogService } from '../services/service.log'
 import { AsyncButton } from './AsyncButton'
 
 export type ControlsProps = {
@@ -34,6 +35,7 @@ export const Controls = (props: ControlsProps) => {
       setIsFullScreen(true)
     }
   }, [])
+  const { logIsOpen, toggleLogIsOpen } = useLogService()
   return (
     <>
       <Slider
@@ -44,6 +46,10 @@ export const Controls = (props: ControlsProps) => {
         onChange={handleZoomChange}
         labelRenderer={false}
       />
+      <NavbarDivider />
+      <Button minimal active={logIsOpen} onClick={toggleLogIsOpen}>
+        {emojis.log}
+      </Button>
       <NavbarDivider />
       <Button minimal active={isFullscreen} onClick={handleToggleFullScreen}>
         {emojis.fullscreen}

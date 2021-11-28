@@ -11,12 +11,26 @@ type LogEntry = { category: string; log: any }
 
 export const usePopulateLogServiceContext = () => {
   const [logs, setLogs] = useState<LogEntry[]>([])
+  const [logIsOpen, setLogIsOpen] = useState(false)
   const addLogEntry = useCallback((category: string, log: any) => {
-    console.log('LOG', category, log)
     setLogs((curr) => curr.concat({ category, log }))
   }, [])
   const clearLog = useCallback(() => setLogs([]), [])
-  return useMemo(() => ({ logs, addLogEntry, clearLog }), [logs, addLogEntry])
+  const toggleLogIsOpen = useCallback(() => setLogIsOpen((curr) => !curr), [])
+  const openLog = useCallback(() => setLogIsOpen(true), [])
+  const closeLog = useCallback(() => setLogIsOpen(false), [])
+  return useMemo(
+    () => ({
+      logs,
+      addLogEntry,
+      clearLog,
+      toggleLogIsOpen,
+      openLog,
+      closeLog,
+      logIsOpen,
+    }),
+    [logs, addLogEntry, toggleLogIsOpen, openLog, closeLog, logIsOpen]
+  )
 }
 
 export type LogService = ReturnType<typeof usePopulateLogServiceContext>
@@ -25,6 +39,10 @@ export const SageLogServiceContext = createContext<LogService>({
   logs: [],
   addLogEntry: () => {},
   clearLog: () => {},
+  toggleLogIsOpen: () => {},
+  openLog: () => {},
+  closeLog: () => {},
+  logIsOpen: false,
 })
 
 export const useLogService = () => {
@@ -38,9 +56,8 @@ export const useLogServiceMiddleware = () => {
       ({ getState }) =>
       (next) =>
       (action) => {
-        addLogEntry('action', action)
         next(action)
-        addLogEntry('state', getState())
+        addLogEntry(action.type, { action, state: getState() })
       }
     return middleware
   }, [])

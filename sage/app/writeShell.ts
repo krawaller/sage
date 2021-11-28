@@ -32,6 +32,10 @@ export const writeShell = async (opts: WriteShellOpts) => {
     '../', // down 1 from 'pages'
     config.components.brain
   )
+  const relLogPath = path.join(
+    '../', // down 1 from 'pages'
+    config.components.log
+  )
   const relSagePath = path.join('../', sagePath) // no need when npm package
   await fs.ensureDir(pagesPath)
   await fs.writeFile(
@@ -41,6 +45,7 @@ export const writeShell = async (opts: WriteShellOpts) => {
         .replace('__BREADCRUMBSPATH__', relBreadCrumbsPath)
         .replace('__CONTROLSPATH__', relControlsPath)
         .replace('__BRAINPATH__', relBrainPath)
+        .replace('__LOGPATH__', relLogPath)
         .replace(/__SAGEPATH__/g, relSagePath)
         .replace('__LINKMAP__', JSON.stringify(linkMap, null, 2))
         .replace('__SAGESETTINGS__', JSON.stringify(config.settings, null, 2)),
