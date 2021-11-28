@@ -1,5 +1,5 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from '@firebase/app'
-import { useDomain, useSettings } from '../components/contexts'
+import { useDomain, useSettings } from '../contexts'
 
 const apps: Record<string, FirebaseApp> = {}
 

@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { AsyncButton } from './AsyncButton'
-import { useCssVars } from './contexts'
+import { useCssVars } from '../contexts'
 
 export type ControlsProps = {
   settings: SageSettings

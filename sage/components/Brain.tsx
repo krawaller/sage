@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { QuestionDef, useQuestionService } from '../services/service.question'
 import { useObeyRemotePath, useRemoteZoom } from '../services/service.remote'
-import { useCssVars, useCurrentPage } from './contexts'
+import { useCssVars, useCurrentPage } from '../contexts'
 
 export const Brain = () => {
   useObeyRemotePath()

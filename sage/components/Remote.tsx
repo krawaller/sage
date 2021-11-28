@@ -2,7 +2,7 @@ import { Button } from '@blueprintjs/core'
 import React, { useCallback } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { useSetRemotePath, useSetRemoteZoom } from '../services/service.remote'
-import { useCssVars, useLinkMap, useSettings } from './contexts'
+import { useCssVars, useLinkMap, useSettings } from '../contexts'
 
 import css from './Remote.module.css'
 import { ResourceLink } from './ResourceLink'

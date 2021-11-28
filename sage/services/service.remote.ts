@@ -8,7 +8,7 @@ import {
 } from '@firebase/database'
 import { useRouter } from 'next/dist/client/router'
 import { useCallback, useMemo } from 'react'
-import { useSettings } from '../components/contexts'
+import { useSettings } from '../contexts'
 import { useFirebaseApp } from './service.firebase'
 
 export const makeRemoteService = (

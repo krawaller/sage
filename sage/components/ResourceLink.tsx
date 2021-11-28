@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { SageLink } from '../processSource/processTypes'
-import { useSettings } from './contexts'
+import { useSettings } from '../contexts'
 
 import styles from './ResourceLink.module.css'
 

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState } from 'react'
-import { SageConfig } from '../configTypes'
-import { SageLink, SageResource } from '../processSource/processTypes'
+import { SageConfig } from './configTypes'
+import { SageLink, SageResource } from './processSource/processTypes'
 
 export const SageDomainContext = createContext('unknown')
 
@@ -55,3 +55,11 @@ const hyphenateKeys = (vars: CssVars) =>
       key.startsWith('--') ? [key, val] : [`--${key}`, val]
     )
   ) as CssVars
+
+export const SageLogContext = createContext<SageLogService>(
+  null as unknown as SageLogService
+)
+
+export const useSageLogger = () => {
+  return useContext(SageLogContext)
+}

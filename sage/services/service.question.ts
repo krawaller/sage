@@ -2,7 +2,7 @@ import { getDatabase, ref, onValue, set, remove } from 'firebase/database'
 import { FirebaseApp } from '@firebase/app'
 import { useFirebaseApp } from './service.firebase'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useSettings } from '../components/contexts'
+import { useSettings } from '../contexts'
 import { useCurrentAuth } from './service.auth'
 
 export type QuestionDef = {

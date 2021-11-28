@@ -12,7 +12,7 @@ import {
   SageCssVarsContext,
   useCssVarsTopLevel,
   useCssVars,
-} from '__SAGEPATH__/components/contexts'
+} from '__SAGEPATH__/contexts'
 import type { SageLink, SageResource } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
 import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
