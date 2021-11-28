@@ -15,7 +15,8 @@ export const usePopulateLogServiceContext = () => {
     console.log('LOG', category, log)
     setLogs((curr) => curr.concat({ category, log }))
   }, [])
-  return useMemo(() => ({ logs, addLogEntry }), [logs, addLogEntry])
+  const clearLog = useCallback(() => setLogs([]), [])
+  return useMemo(() => ({ logs, addLogEntry, clearLog }), [logs, addLogEntry])
 }
 
 export type LogService = ReturnType<typeof usePopulateLogServiceContext>
@@ -23,6 +24,7 @@ export type LogService = ReturnType<typeof usePopulateLogServiceContext>
 export const SageLogServiceContext = createContext<LogService>({
   logs: [],
   addLogEntry: () => {},
+  clearLog: () => {},
 })
 
 export const useLogService = () => {
