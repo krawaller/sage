@@ -2,8 +2,8 @@ import { Button, NavbarDivider, Slider } from '@blueprintjs/core'
 import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
+import { useCssVars } from '../services/service.css-vars'
 import { AsyncButton } from './AsyncButton'
-import { useCssVars } from '../contexts'
 
 export type ControlsProps = {
   settings: SageSettings
