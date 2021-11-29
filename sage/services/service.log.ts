@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react'
 import { Middleware } from 'redux'
+import jsonDiff from 'json-diff'
 
 type LogEntry = { category: string; log: any }
 
@@ -56,8 +57,14 @@ export const useLogServiceMiddleware = () => {
       ({ getState }) =>
       (next) =>
       (action) => {
+        const oldState = getState()
         next(action)
-        addLogEntry(action.type, { action, state: getState() })
+        const newState = getState()
+        addLogEntry(action.type, {
+          action,
+          state: newState,
+          diff: jsonDiff.diff(oldState, newState),
+        })
       }
     return middleware
   }, [])

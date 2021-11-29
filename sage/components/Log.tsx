@@ -26,6 +26,8 @@ export const Log = () => {
                 key={i}
                 src={log}
                 collapsed
+                displayDataTypes={false}
+                displayObjectSize={false}
               />
             </div>
           ))}
