@@ -81,7 +81,7 @@ export const useRemoteZoom = (callback: (zoom: number) => void) => {
 export const useSetRemoteZoom = () => {
   const remoteService = useRemoteService()
   return useCallback((zoom: number) => {
-    remoteService.setZoom(zoom)
+    remoteService.setZoom(Number(zoom))
   }, [])
 }
 
