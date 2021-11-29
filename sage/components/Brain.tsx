@@ -1,8 +1,13 @@
 import { useCallback, useEffect } from 'react'
 import { QuestionDef, useQuestionService } from '../services/service.question'
-import { useObeyRemotePath, useRemoteZoom } from '../services/service.remote'
+import {
+  useObeyRemotePath,
+  useRemoteLog,
+  useRemoteZoom,
+} from '../services/service.remote'
 import { useCssVars } from '../services/service.css-vars'
 import { useCurrentPage } from '../contexts'
+import { useLogService } from '../services/service.log'
 
 export const Brain = () => {
   useObeyRemotePath()
@@ -21,6 +26,10 @@ export const Brain = () => {
     [updateCssVars]
   )
   useRemoteZoom(handleRemoteZoomChange)
+
+  const { setLog } = useLogService()
+  useRemoteLog(setLog)
+
   return null
 }
 

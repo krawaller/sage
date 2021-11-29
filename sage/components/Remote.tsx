@@ -1,7 +1,12 @@
 import { Button } from '@blueprintjs/core'
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
-import { useSetRemotePath, useSetRemoteZoom } from '../services/service.remote'
+import {
+  useRemoteLog,
+  useSetRemoteLog,
+  useSetRemotePath,
+  useSetRemoteZoom,
+} from '../services/service.remote'
 import { useCssVars } from '../services/service.css-vars'
 import { useLinkMap, useSettings } from '../contexts'
 
@@ -27,6 +32,7 @@ const RemoteLogin = () => {
 
 const RemoteInner = () => {
   const setRemoteZoom = useSetRemoteZoom()
+  const [logIsOpen, setLogIsOpen] = useState(false)
   const handleZoomChange = useCallback((e) => {
     e?.target?.value !== undefined && setRemoteZoom(e.target.value)
   }, [])
@@ -37,6 +43,13 @@ const RemoteInner = () => {
   const { cssVars } = useCssVars()
   const linkMap = useLinkMap()
   const setRemotePath = useSetRemotePath()
+  const setRemoteLog = useSetRemoteLog()
+  const handleToggleLog = useCallback(() => {
+    setLogIsOpen((curr) => {
+      setRemoteLog(!curr)
+      return !curr
+    })
+  }, [])
   return (
     <div>
       <input
@@ -48,6 +61,9 @@ const RemoteInner = () => {
         defaultValue={cssVars['--zoom']}
         onChange={handleZoomChange}
       />
+      <Button minimal active={logIsOpen} onClick={handleToggleLog}>
+        {emojis.log}
+      </Button>
       <div className={css['remote-links']}>
         {Object.values(linkMap).map((link) => (
           <Button key={link.path} onClick={() => setRemotePath(link.path)}>

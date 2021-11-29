@@ -20,6 +20,7 @@ export const usePopulateLogServiceContext = () => {
   const toggleLogIsOpen = useCallback(() => setLogIsOpen((curr) => !curr), [])
   const openLog = useCallback(() => setLogIsOpen(true), [])
   const closeLog = useCallback(() => setLogIsOpen(false), [])
+  const setLog = useCallback((open: boolean) => setLogIsOpen(open), [])
   return useMemo(
     () => ({
       logs,
@@ -28,6 +29,7 @@ export const usePopulateLogServiceContext = () => {
       toggleLogIsOpen,
       openLog,
       closeLog,
+      setLog,
       logIsOpen,
     }),
     [logs, addLogEntry, toggleLogIsOpen, openLog, closeLog, logIsOpen]
@@ -43,6 +45,7 @@ export const SageLogServiceContext = createContext<LogService>({
   toggleLogIsOpen: () => {},
   openLog: () => {},
   closeLog: () => {},
+  setLog: () => {},
   logIsOpen: false,
 })
 

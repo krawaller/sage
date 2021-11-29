@@ -34,6 +34,14 @@ export const makeRemoteService = (
       const pathRef = ref(db, `presentations/${presentationId}/remote/path`)
       set(pathRef, p)
     },
+    log(callback: (logIsOpen: boolean) => void) {
+      const logRef = ref(db, `presentations/${presentationId}/remote/logIsOpen`)
+      return thresholdCallback(logRef, callback, threshold)
+    },
+    setLog(logIsOpen: boolean) {
+      const logRef = ref(db, `presentations/${presentationId}/remote/logIsOpen`)
+      set(logRef, logIsOpen)
+    },
   }
 }
 
@@ -98,4 +106,18 @@ export const useObeyRemotePath = () => {
     [router]
   )
   useRemotePath(handleRemoteRouteChange)
+}
+
+export const useRemoteLog = (callback: (log: boolean) => void) => {
+  const remoteService = useRemoteService()
+  return useMemo(() => {
+    remoteService.log(callback)
+  }, [callback, remoteService])
+}
+
+export const useSetRemoteLog = () => {
+  const remoteService = useRemoteService()
+  return useCallback((logIsOpen: boolean) => {
+    remoteService.setLog(logIsOpen)
+  }, [])
 }
