@@ -2,7 +2,6 @@ import { Button } from '@blueprintjs/core'
 import React, { useCallback, useState } from 'react'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import {
-  useRemoteLog,
   useSetRemoteLog,
   useSetRemotePath,
   useSetRemoteZoom,

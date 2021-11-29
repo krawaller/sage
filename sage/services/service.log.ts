@@ -8,13 +8,14 @@ import {
 import { Middleware } from 'redux'
 import jsonDiff from 'json-diff'
 
-type LogEntry = { category: string; log: any }
+type LogEntry = { category: string; log: any; id: number }
 
 export const usePopulateLogServiceContext = () => {
   const [logs, setLogs] = useState<LogEntry[]>([])
   const [logIsOpen, setLogIsOpen] = useState(false)
+  let id = 0
   const addLogEntry = useCallback((category: string, log: any) => {
-    setLogs((curr) => curr.concat({ category, log }))
+    setLogs((curr) => curr.concat({ category, log, id: ++id }))
   }, [])
   const clearLog = useCallback(() => setLogs([]), [])
   const toggleLogIsOpen = useCallback(() => setLogIsOpen((curr) => !curr), [])

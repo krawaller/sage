@@ -13,7 +13,7 @@ export const Brain = () => {
   useObeyRemotePath()
   const resource = useCurrentPage()
   const questionService = useQuestionService()
-  const { cssVars, updateCssVars } = useCssVars()
+  const { updateCssVars } = useCssVars()
   useEffect(() => {
     if (resource.type === 'file' && resource.kind === 'question') {
       questionService.setQurrentQuestion(resource.processed as QuestionDef)

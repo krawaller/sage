@@ -47,6 +47,7 @@ const sageConfig: SageConfig = {
       folder: '📁',
       root: '🏠',
       log: '🪵',
+      clearLog: '🔥',
       code: '⌨️',
       question: '🙋',
       graph: '💭',

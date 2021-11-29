@@ -14,7 +14,10 @@ export const AsyncButton = (props: AsyncButtonprops) => {
   const onClick = useCallback(
     (e: Evt) => {
       setLoading(true)
-      const promise = onClickInner(e)
+      const promise = Promise.all([
+        onClickInner(e),
+        new Promise((resolve) => setTimeout(resolve, 300)), // minimum button press time
+      ])
       promise.finally(() => setLoading(false)) // TODO - check if mounted
       return promise
     },

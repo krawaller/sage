@@ -19,13 +19,14 @@ export const Log = () => {
     >
       <div className={Classes.DRAWER_BODY}>
         <div className={Classes.DIALOG_BODY}>
-          {logs.map(({ log, category }, i) => (
+          {logs.map(({ log, category, id }, i) => (
             <div key={i}>
               <BrowserReactJsonView
-                name={category}
+                name={`${id.toString().padStart(4, '0')} ${category}`}
                 key={i}
                 src={log}
                 collapsed
+                enableClipboard={false}
                 displayDataTypes={false}
                 displayObjectSize={false}
               />
@@ -34,7 +35,7 @@ export const Log = () => {
         </div>
       </div>
       <div className={Classes.DRAWER_FOOTER}>
-        <button onClick={clearLog}>Clear</button>
+        <button onClick={clearLog}>{emojis.clearLog} Clear</button>
       </div>
     </Drawer>
   )
