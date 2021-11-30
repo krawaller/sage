@@ -24,6 +24,10 @@ export const writeShell = async (opts: WriteShellOpts) => {
     '../', // down 1 from 'pages'
     config.components.breadcrumbs
   )
+  const relNavPath = path.join(
+    '../', // down 1 from 'pages'
+    config.components.nav
+  )
   const relControlsPath = path.join(
     '../', // down 1 from 'pages'
     config.components.controls
@@ -43,6 +47,7 @@ export const writeShell = async (opts: WriteShellOpts) => {
     prettier.format(
       appTemplate
         .replace('__BREADCRUMBSPATH__', relBreadCrumbsPath)
+        .replace('__NAVPATH__', relNavPath)
         .replace('__CONTROLSPATH__', relControlsPath)
         .replace('__BRAINPATH__', relBrainPath)
         .replace('__LOGPATH__', relLogPath)

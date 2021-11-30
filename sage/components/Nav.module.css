@@ -1,0 +1,8 @@
+.nav {
+  height: auto !important; /* competing with BP4 here, hence important */
+  padding: var(--pad) !important;
+}
+
+.nav-files > :not(:first-child) {
+  margin-left: calc(var(--pad) * 4);
+}

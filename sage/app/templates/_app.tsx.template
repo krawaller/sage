@@ -26,6 +26,7 @@ import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
 import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 import Brain from '__BRAINPATH__' // Controlled via sage.config
 import Log from '__LOGPATH__' // Controlled via sage.config
+import Nav from '__NAVPATH__' // Controlled via sage.config
 import { imageClass } from '../sage/utils/imageClass'
 
 import css from './app.module.css'
@@ -73,6 +74,7 @@ const ResourcePage = (props: ResourcePageProps) => {
             settings={sageSettings}
           />
         </div>
+        <Nav linkMap={sageLinkMap} resource={resource} />
       </div>
     </>
   )
