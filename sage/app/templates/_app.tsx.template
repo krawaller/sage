@@ -22,7 +22,6 @@ import {
 } from '__SAGEPATH__/services/service.log'
 import type { SageLink, SageResource } from '__SAGEPATH__/processSource/processTypes'
 import type { SagePage } from '__SAGEPATH__/components'
-import BreadCrumbs from '__BREADCRUMBSPATH__' // Controlled via sage.config
 import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 import Brain from '__BRAINPATH__' // Controlled via sage.config
 import Log from '__LOGPATH__' // Controlled via sage.config
@@ -49,9 +48,6 @@ const ResourcePage = (props: ResourcePageProps) => {
       </Head>
       <div style={cssVars} className={css.shell}>
         <Navbar>
-          <NavbarGroup align={Alignment.LEFT}>
-            <BreadCrumbs linkMap={sageLinkMap} resource={resource} />
-          </NavbarGroup>
           <NavbarGroup align={Alignment.RIGHT}>
             <Controls settings={sageSettings} />
           </NavbarGroup>
@@ -66,6 +62,9 @@ const ResourcePage = (props: ResourcePageProps) => {
               // TODO - handle this URL better
               src={'/' + meta.image}
             />
+          )}
+          {meta.title && (
+            <h3 className="bp4-headline">{meta.title}</h3>
           )}
           <Component
             {...pageProps}

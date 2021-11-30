@@ -20,10 +20,6 @@ type WriteShellOpts = {
 export const writeShell = async (opts: WriteShellOpts) => {
   const { config, linkMap, sagePath } = opts
   const appTemplate = (await fs.readFile(templatePath)).toString()
-  const relBreadCrumbsPath = path.join(
-    '../', // down 1 from 'pages'
-    config.components.breadcrumbs
-  )
   const relNavPath = path.join(
     '../', // down 1 from 'pages'
     config.components.nav
@@ -46,7 +42,6 @@ export const writeShell = async (opts: WriteShellOpts) => {
     path.join(pagesPath, '_app.tsx'),
     prettier.format(
       appTemplate
-        .replace('__BREADCRUMBSPATH__', relBreadCrumbsPath)
         .replace('__NAVPATH__', relNavPath)
         .replace('__CONTROLSPATH__', relControlsPath)
         .replace('__BRAINPATH__', relBrainPath)

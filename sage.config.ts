@@ -13,7 +13,6 @@ const sageConfig: SageConfig = {
     brain: './sage/components/Brain',
     folder: './sage/components/Folder',
     root: './sage/components/Root',
-    breadcrumbs: './sage/components/BreadCrumbs',
     nav: './sage/components/Nav',
     controls: './sage/components/Controls',
     log: './sage/components/Log',

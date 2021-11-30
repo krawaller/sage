@@ -18,7 +18,7 @@
 }
 
 .resource-link-vertical .resource-link-emoji {
-  font-size: 3em;
+  font-size: 2em;
   margin-bottom: calc(var(--pad) * -1);
   text-decoration: none !important;
 }

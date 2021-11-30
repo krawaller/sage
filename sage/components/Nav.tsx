@@ -31,7 +31,7 @@ export const Nav = (props: NavProps) => {
             key={folderId}
             link={linkMap[folderId]}
             vertical
-            active
+            active={folderId === resource.id}
           />
         </li>
       ))}

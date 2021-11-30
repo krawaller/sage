@@ -3,6 +3,12 @@
   padding: var(--pad) !important;
 }
 
+.nav-files {
+  background-color: bisque;
+  border-radius: var(--pad);
+  padding: var(--pad);
+}
+
 .nav-files > :not(:first-child) {
   margin-left: calc(var(--pad) * 4);
 }
