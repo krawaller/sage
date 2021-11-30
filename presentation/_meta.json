@@ -1,4 +1,5 @@
 {
-  "title": "My awesome lecture",
-  "short": "Home"
+  "title": "Redux redux - a JavaScript state management adventure",
+  "short": "Home",
+  "image": "images/qdaylogo.svg"
 }

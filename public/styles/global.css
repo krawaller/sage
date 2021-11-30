@@ -17,3 +17,7 @@ body {
 .bp4-popover-target {
   display: block;
 }
+
+img.qdaylogo_svg {
+  filter: drop-shadow(grey 0px 0px 5px);
+}
