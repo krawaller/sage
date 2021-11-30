@@ -30,6 +30,10 @@ export const getLinkRecord = (
           page.meta.short ||
           (page.type === 'file' && page.name) ||
           page.id,
+        parent: page.crumbs.slice(-1)[0],
+        ...(page.type !== 'file' && {
+          contains: page.contains,
+        }),
       },
     ])
   )

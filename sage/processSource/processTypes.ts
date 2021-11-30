@@ -40,4 +40,6 @@ export type SageLink = {
   type: SageResource['type']
   kind: string
   sort: number | string
+  parent?: string
+  contains?: string[]
 }
