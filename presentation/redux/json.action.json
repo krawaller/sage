@@ -1,0 +1,12 @@
+{
+  "short": "A typical action",
+  "title": "A typical action",
+  "sort": "003",
+  "json": {
+    "type": "LOAD_CONFIG_INIT",
+    "payload": {
+      "configId": "fjo384uth",
+      "bypassCache": true
+    }
+  }
+}

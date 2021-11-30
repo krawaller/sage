@@ -1,4 +1,4 @@
-import { pickMetaFromJson } from '../../utils/pickMetaFromJson'
+import { pickMetaFromJson } from '../../utils/metaFromJson'
 import { Processor } from '../pluginTypes'
 import { AppletDefinition } from './applet-types'
 

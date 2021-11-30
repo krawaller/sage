@@ -1,4 +1,4 @@
-import { pickMetaFromJson } from '../../utils/pickMetaFromJson'
+import { excludeMetaFromJson, pickMetaFromJson } from '../../utils/metaFromJson'
 import { Processor } from '../pluginTypes'
 
 export const questionProcessor: Processor<Record<string, any>> = async (
@@ -8,7 +8,7 @@ export const questionProcessor: Processor<Record<string, any>> = async (
   const data = JSON.parse(content)
   return {
     output: {
-      ...data,
+      ...excludeMetaFromJson(data),
       options: Object.fromEntries(
         Object.entries(data.options).map(
           ([i, { id, emoji, text }]: [string, any]) => [id, { text, emoji }]

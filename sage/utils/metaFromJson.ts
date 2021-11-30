@@ -9,3 +9,11 @@ export const pickMetaFromJson = (json: Record<string, any>) => {
   }
   return ret
 }
+
+export const excludeMetaFromJson = (json: Record<string, any>) => {
+  const ret = { ...json }
+  for (const key of keys) {
+    delete ret[key]
+  }
+  return ret
+}

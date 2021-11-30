@@ -4,6 +4,7 @@ import {
   markdownPlugin,
   questionPlugin,
   appletPlugin,
+  jsonPlugin,
 } from './sage'
 import type { SageConfig } from './sage/configTypes'
 
@@ -16,6 +17,7 @@ const sageConfig: SageConfig = {
     controls: './sage/components/Controls',
     log: './sage/components/Log',
     code: './sage/components/Code',
+    json: './sage/components/Json',
     graph: './sage/components/Graph',
     markdown: './sage/components/Markdown',
     question: './sage/components/Question',
@@ -29,6 +31,7 @@ const sageConfig: SageConfig = {
     markdown: markdownPlugin,
     question: questionPlugin,
     applet: appletPlugin,
+    json: jsonPlugin,
   },
   settings: {
     presentationId: 'reduxStuff',
@@ -55,6 +58,7 @@ const sageConfig: SageConfig = {
       login: '🔑',
       fullscreen: '🐡',
       applet: '💻',
+      json: '🧫',
     },
     controls: {
       zoomMin: 1,

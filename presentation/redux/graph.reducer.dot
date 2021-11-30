@@ -1,3 +1,9 @@
+---
+title: The reducer
+short: Reducer
+sort: '002'
+---
+
 digraph "G" {
   rankdir="LR"
   Reducer [shape=box]

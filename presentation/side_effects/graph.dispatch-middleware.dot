@@ -1,0 +1,26 @@
+digraph {
+	bgcolor = transparent
+	rankdir = LR
+	actioncreator [label="Action\ncreator",shape=box]
+	action1 [label="Action"]
+	subgraph cluster_withmid {
+		label="Middlewared dispatch"
+		storedispatch [label="Store\ndispatch",shape=box]
+		mid1 [label="Middleware 1",shape=box]
+		mid2 [label="Middleware 2",shape=box]
+		mid3 [label="Middleware 3",shape=box]
+		action2 [label="Action"]
+		action3 [label="Action"]
+		action4 [label="Action"]
+		{rank=same; mid1, mid3}
+		{rank=same; action2, action3}
+	}
+	actioncreator -> action1
+	action1 -> mid1
+	mid1 -> action2
+	action2 -> mid2
+	mid2 -> action3
+	action3 -> mid3
+	mid3 -> action4
+	action4 -> storedispatch
+}
