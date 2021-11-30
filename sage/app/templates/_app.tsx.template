@@ -25,6 +25,7 @@ import Controls from '__CONTROLSPATH__' // Controlled via sage.config
 import Brain from '__BRAINPATH__' // Controlled via sage.config
 import Log from '__LOGPATH__' // Controlled via sage.config
 import Nav from '__NAVPATH__' // Controlled via sage.config
+import Logo from '__LOGOPATH__' // Controlled via sage.config
 import { imageClass } from '../sage/utils/imageClass'
 
 import css from './app.module.css'
@@ -46,9 +47,8 @@ const ResourcePage = (props: ResourcePageProps) => {
         <title>{sageLinkMap[resource.id].short}</title>
       </Head>
       <div style={cssVars} className={css.shell}>
-        <div>
-          <Controls settings={sageSettings} />
-        </div>
+        <Logo />
+        <Controls settings={sageSettings} />
         <div className={css.content}>
           {meta.image && (
             <img

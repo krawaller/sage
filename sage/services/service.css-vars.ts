@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 
-type CssVars = Record<string, string | number>
+type CssVars = Record<string, string | number | undefined>
 
 export const SageCssVarsContext = createContext({
   cssVars: {} as CssVars,

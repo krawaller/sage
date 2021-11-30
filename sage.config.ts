@@ -15,6 +15,7 @@ const sageConfig: SageConfig = {
     folder: './sage/components/Folder',
     root: './sage/components/Root',
     nav: './sage/components/Nav',
+    logo: './sage/components/Logo',
     controls: './sage/components/Controls',
     log: './sage/components/Log',
     code: './sage/components/Code',
@@ -39,6 +40,10 @@ const sageConfig: SageConfig = {
   settings: {
     presentationId: 'reduxStuff',
     remoteThreshold: 5000,
+    main: {
+      logo: '/images/reduxlogo.png',
+      logo2: '/images/qdaylogo.svg',
+    },
     firebase: {
       apiKey: 'AIzaSyBbgosEF_634jX3GzaEvEZB40X7DyAEa6g',
       authDomain: 'sage-vote.firebaseapp.com',

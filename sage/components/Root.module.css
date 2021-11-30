@@ -1,0 +1,21 @@
+.rootContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo_1 {
+  max-height: 40%;
+  max-width: 60%;
+}
+
+.logo_2 {
+  max-height: 20%;
+  max-width: 50%;
+}
+
+.tagLine {
+  margin: calc(var(--pad) * 4) 0;
+}

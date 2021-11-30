@@ -1,0 +1,17 @@
+.logo_1,
+.logo_2 {
+  position: absolute;
+  margin: var(--pad);
+  max-height: calc(var(--pad) * 5);
+  max-width: calc(var(--pad) * 10);
+}
+
+.logo_1 {
+  top: 0;
+  left: 0;
+}
+
+.logo_2 {
+  bottom: 0;
+  right: 0;
+}

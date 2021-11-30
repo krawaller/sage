@@ -24,6 +24,10 @@ export const writeShell = async (opts: WriteShellOpts) => {
     '../', // down 1 from 'pages'
     config.components.nav
   )
+  const relLogoPath = path.join(
+    '../', // down 1 from 'pages'
+    config.components.logo
+  )
   const relControlsPath = path.join(
     '../', // down 1 from 'pages'
     config.components.controls
@@ -44,6 +48,7 @@ export const writeShell = async (opts: WriteShellOpts) => {
       appTemplate
         .replace('__NAVPATH__', relNavPath)
         .replace('__CONTROLSPATH__', relControlsPath)
+        .replace('__LOGOPATH__', relLogoPath)
         .replace('__BRAINPATH__', relBrainPath)
         .replace('__LOGPATH__', relLogPath)
         .replace(/__SAGEPATH__/g, relSagePath)
