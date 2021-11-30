@@ -1,0 +1,5 @@
+{
+  "sort": "004",
+  "componentPath": "./stuff/lego/app/App",
+  "props": { "version": 3 }
+}

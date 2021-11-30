@@ -38,7 +38,7 @@ export const Main: FunctionComponent<MainProps> = ({ version }) => {
         </small>
       </h3>
       <div style={{ display: 'flex', width: '100%' }}>
-        <div>
+        <div style={{ flexGrow: 1 }}>
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <ThemeSelector />
             {currentThemeId && <SetSelector />}
