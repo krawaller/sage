@@ -1,5 +1,0 @@
-### Woo!
-
-- foo
-- bar
-- baz!

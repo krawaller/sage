@@ -1,8 +1,0 @@
-{
-  "id": "sure",
-  "question": "Are you quite sure?!",
-  "options": [
-    { "id": "omgYes", "text": "OMG YEEES!", "emoji": "👍" },
-    { "id": "omgNo", "text": "nah", "emoji": "👎" }
-  ]
-}
