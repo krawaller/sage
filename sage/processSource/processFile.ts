@@ -1,4 +1,5 @@
 import fs from 'fs-extra'
+import fm from 'front-matter'
 import { SagePlugin } from '../plugins'
 import { getFileDescription } from './getFileDescription'
 import { getFileMetaData } from './getFileMetaData'
@@ -24,17 +25,19 @@ export const processFile = async (
     getFileMetaData(filePath),
     fs.readFile(filePath),
   ])
-  const content = buffer.toString()
+  const fileContent = buffer.toString()
+  const { body, attributes: frontMatterMeta } = fm(fileContent)
   const {
     output,
     additionalMeta,
     imports = {},
   } = await plugin.processor({
-    content,
+    content: body,
     meta,
     filePath,
   })
   const fullMeta = {
+    ...(frontMatterMeta as Record<string, any>),
     ...meta,
     ...additionalMeta,
   }
