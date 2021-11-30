@@ -1,0 +1,10 @@
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: var(--pad);
+}
+
+.controls > :not(:first-child) {
+  margin-left: var(--pad);
+}

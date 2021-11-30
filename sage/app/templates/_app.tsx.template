@@ -2,7 +2,6 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Alignment, Navbar, NavbarGroup } from '@blueprintjs/core'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import {
@@ -47,11 +46,9 @@ const ResourcePage = (props: ResourcePageProps) => {
         <title>{sageLinkMap[resource.id].short}</title>
       </Head>
       <div style={cssVars} className={css.shell}>
-        <Navbar>
-          <NavbarGroup align={Alignment.RIGHT}>
-            <Controls settings={sageSettings} />
-          </NavbarGroup>
-        </Navbar>
+        <div>
+          <Controls settings={sageSettings} />
+        </div>
         <div className={css.content}>
           {meta.image && (
             <img

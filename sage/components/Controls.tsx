@@ -1,10 +1,12 @@
-import { Button, NavbarDivider, Slider } from '@blueprintjs/core'
+import { Button, Slider } from '@blueprintjs/core'
 import React, { useCallback, useState } from 'react'
 import { SageSettings } from '../configTypes'
 import { useAuthService, useCurrentAuth } from '../services/service.auth'
 import { useCssVars } from '../services/service.css-vars'
 import { useLogService } from '../services/service.log'
 import { AsyncButton } from './AsyncButton'
+
+import css from './Controls.module.css'
 
 export type ControlsProps = {
   settings: SageSettings
@@ -37,7 +39,7 @@ export const Controls = (props: ControlsProps) => {
   }, [])
   const { logIsOpen, toggleLogIsOpen } = useLogService()
   return (
-    <>
+    <div className={css.controls}>
       <Slider
         min={zoomMin}
         max={zoomMax}
@@ -46,15 +48,12 @@ export const Controls = (props: ControlsProps) => {
         onChange={handleZoomChange}
         labelRenderer={false}
       />
-      <NavbarDivider />
       <Button minimal active={logIsOpen} onClick={toggleLogIsOpen}>
         {emojis.log}
       </Button>
-      <NavbarDivider />
       <Button minimal active={isFullscreen} onClick={handleToggleFullScreen}>
         {emojis.fullscreen}
       </Button>
-      <NavbarDivider />
       <AsyncButton
         minimal
         active={Boolean(currentUser)}
@@ -66,7 +65,7 @@ export const Controls = (props: ControlsProps) => {
       >
         {emojis.login}
       </AsyncButton>
-    </>
+    </div>
   )
 }
 
