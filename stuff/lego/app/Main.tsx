@@ -14,11 +14,22 @@ type MainProps = {
 export const Main: FunctionComponent<MainProps> = ({ version }) => {
   const { currentThemeId, currentSetId } = useSelector(({ ui }: AppState) => ui)
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+    <div
+      style={{
+        maxWidth: '800px',
+        margin: '0 auto',
+        height: '70%',
+        width: '80%',
+        padding: 'var(--pad)',
+        backgroundColor: 'lightblue',
+        borderRadius: 'var(--pad)',
+      }}
+    >
       <h3
         style={{
           display: 'flex',
           justifyContent: 'space-between',
+          marginTop: 0,
         }}
       >
         <span>Super Castle Lego piece guesser</span>
@@ -26,7 +37,7 @@ export const Main: FunctionComponent<MainProps> = ({ version }) => {
           ({version})
         </small>
       </h3>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', width: '100%' }}>
         <div>
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <ThemeSelector />

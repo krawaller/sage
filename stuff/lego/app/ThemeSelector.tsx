@@ -16,7 +16,7 @@ export const ThemeSelector: FunctionComponent = () => {
     (state: AppState) => ({
       isLoadingThemes: state.rebrickable.themes.loading,
       themes: state.rebrickable.themes.data,
-      currentThemeId: state.ui.currentThemeId
+      currentThemeId: state.ui.currentThemeId,
     })
   )
 
@@ -51,13 +51,14 @@ export const ThemeSelector: FunctionComponent = () => {
 
   return (
     <Select
-      items={themesArray.filter(t =>
+      items={themesArray.filter((t) =>
         t.name.toLowerCase().match(query.toLowerCase())
       )}
       itemRenderer={renderItem}
-      onItemSelect={theme => dispatch(setCurrentTheme(theme.id))}
+      onItemSelect={(theme) => dispatch(setCurrentTheme(theme.id))}
       popoverProps={{ minimal: true }}
       onQueryChange={setQuery}
+      className="theme-selector"
     >
       <Button
         disabled={isLoadingThemes || !themes}

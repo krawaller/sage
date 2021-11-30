@@ -28,6 +28,6 @@
 }
 
 .resource-link-active {
-  background-color: rgba(143, 153, 168, 0.3);
+  background-color: bisque;
   border-radius: var(--pad);
 }

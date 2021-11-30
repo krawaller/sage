@@ -4,7 +4,7 @@
 }
 
 .nav-files {
-  background-color: bisque;
+  background-color: rgba(143, 153, 168, 0.2);
   border-radius: var(--pad);
   padding: var(--pad);
 }
@@ -17,5 +17,5 @@
   height: 100%;
   width: 100%;
   border-radius: var(--pad);
-  background-color: rgba(143, 153, 168, 0.3);
+  background-color: bisque;
 }

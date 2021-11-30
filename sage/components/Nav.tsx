@@ -28,6 +28,9 @@ export const Nav = (props: NavProps) => {
   )
   return (
     <>
+      <Possessor prefixes={prefixes}>
+        <div className={css['nav-highlight']} />
+      </Possessor>
       <ul className={classNames('bp4-overflow-list bp4-breadcrumbs', css.nav)}>
         {folderIds.map((folderId) => (
           <li key={folderId}>
@@ -50,9 +53,6 @@ export const Nav = (props: NavProps) => {
           ))}
         </li>
       </ul>
-      <Possessor prefixes={prefixes}>
-        <div className={css['nav-highlight']} />
-      </Possessor>
     </>
   )
 }

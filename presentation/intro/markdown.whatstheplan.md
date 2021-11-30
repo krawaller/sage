@@ -5,5 +5,7 @@ title: "What's the plan?"
 image: 'images/jagharenplan.png'
 ---
 
-- JS stuff
-- omg yeah
+- Redux crash course
+- Understanding the problem
+- Understanding the solutions
+- Finding the white patches

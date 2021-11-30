@@ -30,3 +30,7 @@ body {
 img.qdaylogo_svg {
   filter: drop-shadow(grey 0px 0px 5px);
 }
+
+.theme-selector {
+  margin-right: calc(var(--pad) * 2);
+}
