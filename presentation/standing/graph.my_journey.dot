@@ -1,0 +1,18 @@
+---
+short: "What I think"
+sort: "004"
+---
+digraph {
+  rankdir="LR";
+  hard -> easy;
+  hard -> verbose [style=invis];
+  easy:e -> verbose:w [constraint=false];
+  verbose -> good;
+  {rank=same; hard, easy}
+  {rank=same; verbose, good}
+  hard -> good [style=invis];
+  hard [label="I don't get it"];
+  easy [label="Ooh, this is neat!"];
+  verbose [label="But super verbose :("];
+  good [label="Unless you do it right!"];
+}

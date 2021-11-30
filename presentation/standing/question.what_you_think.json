@@ -1,0 +1,23 @@
+{
+  "short": "What you think?",
+  "sort": "005",
+  "id": "whatuthinkaboutredux",
+  "question": "So, Redux?",
+  "options": [
+    {
+      "id": "redux-master",
+      "text": "Redux ALL THE THINGS!!1",
+      "emoji": "🤘"
+    },
+    {
+      "id": "redux-hater",
+      "text": "Bah! We use better stuff",
+      "emoji": "🗑️"
+    },
+    {
+      "id": "other",
+      "text": "Pssh, you JS people and your toys",
+      "emoji": "🧸"
+    }
+  ]
+}

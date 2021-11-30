@@ -1,3 +1,7 @@
+---
+short: "Middleware"
+---
+
 digraph {
 	bgcolor = transparent
 	rankdir = LR

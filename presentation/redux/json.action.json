@@ -2,6 +2,7 @@
   "short": "A typical action",
   "title": "A typical action",
   "sort": "003",
+  "image": "images/needsomeaction.jpg",
   "json": {
     "type": "LOAD_CONFIG_INIT",
     "payload": {
