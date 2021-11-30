@@ -28,7 +28,7 @@ export const Question: SageFileComponent<Record<string, any>> = (props) => {
       className={css.questionContainer}
       style={{ '--total': total || 1 } as CSSProperties}
     >
-      <div className={classNames(css.question)}>{question}</div>
+      <h3 className={classNames('bp4-heading', css.question)}>{question}</h3>
       <div className={css.options}>
         {Object.entries(options).map(([id, { text, emoji }]) => (
           <div
