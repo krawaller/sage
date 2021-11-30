@@ -1,0 +1,10 @@
+.sage-tweet {
+  width: 40%;
+  opacity: 1;
+}
+
+.tweet-loading {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+}

@@ -7,6 +7,7 @@ import {
   jsonPlugin,
 } from './sage'
 import type { SageConfig } from './sage/configTypes'
+import { tweetPlugin } from './sage/plugins/tweet'
 
 const sageConfig: SageConfig = {
   components: {
@@ -24,6 +25,7 @@ const sageConfig: SageConfig = {
     remote: './sage/components/Remote',
     voter: './sage/components/Voter',
     applet: './sage/components/Applet',
+    tweet: './sage/components/Tweet',
   },
   processors: {
     code: codePlugin,
@@ -32,6 +34,7 @@ const sageConfig: SageConfig = {
     question: questionPlugin,
     applet: appletPlugin,
     json: jsonPlugin,
+    tweet: tweetPlugin,
   },
   settings: {
     presentationId: 'reduxStuff',
@@ -59,6 +62,7 @@ const sageConfig: SageConfig = {
       fullscreen: '🐡',
       applet: '💻',
       json: '🧫',
+      tweet: '🐦',
     },
     controls: {
       zoomMin: 1,

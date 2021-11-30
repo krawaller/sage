@@ -7,6 +7,10 @@
   overflow: hidden;
 }
 
+.shell > :not(.content) {
+  z-index: 2;
+}
+
 .content {
   flex: 1;
   display: flex;
@@ -15,5 +19,5 @@
   align-items: center;
   overflow: hidden; /* So zoomed content doesn't overlap control panel */
   transform: scale(var(--zoom), var(--zoom));
-  z-index: -1;
+  z-index: 1;
 }

@@ -97,6 +97,7 @@ const SageApp = (props: AppProps) => {
                   />
                   <link rel="stylesheet" href="/styles/global.css" />
                   <link rel="stylesheet" href="/styles/blueprint.css" />
+                  <script src="/scripts/twitter.js" />
                 </Head>
                 {resource ? (
                   <ResourcePage Component={Component} pageProps={pageProps} />
