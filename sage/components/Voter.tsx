@@ -40,7 +40,7 @@ const VoterInner = () => {
   const { question, options } = currentQuestion
   return (
     <>
-      <p>{question}</p>
+      <h3 className="bp4-heading">{question}</h3>
       <div className={css.options}>
         {Object.entries(options).map(([optionId, { text, emoji }]) => (
           <AsyncButton

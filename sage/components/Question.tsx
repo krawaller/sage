@@ -37,7 +37,7 @@ export const Question: SageFileComponent<Record<string, any>> = (props) => {
             style={{ '--count': perOption[id] || 0 } as CSSProperties}
           >
             <div>
-              {emoji} {text}
+              {text} {emoji}
             </div>
             <div>{perOption[id] || 0}</div>
           </div>

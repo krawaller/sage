@@ -5,8 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.options > :not(:first-child) {
-  margin-left: var(--pad);
+.options > * {
+  margin: var(--pad);
 }

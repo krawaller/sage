@@ -26,7 +26,7 @@
 }
 
 .optionContainer > :last-child {
-  flex-grow: 1;
+  width: 30%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
