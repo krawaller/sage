@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "robot": "npm run try && npm run build"
   },
   "dependencies": {
     "@blueprintjs/core": "^4.0.0-beta.8",
