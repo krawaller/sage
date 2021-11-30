@@ -6,7 +6,7 @@ import { makeProdStore } from '../redux'
 import { Main } from './Main'
 
 import '@blueprintjs/core/lib/css/blueprint.css'
-import { useLogServiceMiddleware } from '../../sage/services/service.log'
+import { useLogServiceMiddleware } from '../../../sage/services/service.log'
 
 type AppProps = { version: string }
 
