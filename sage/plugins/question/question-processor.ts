@@ -1,3 +1,4 @@
+import { pickMetaFromJson } from '../../utils/pickMetaFromJson'
 import { Processor } from '../pluginTypes'
 
 export const questionProcessor: Processor<Record<string, any>> = async (
@@ -6,11 +7,14 @@ export const questionProcessor: Processor<Record<string, any>> = async (
   const { content } = input
   const data = JSON.parse(content)
   return {
-    ...data,
-    options: Object.fromEntries(
-      Object.entries(data.options).map(
-        ([i, { id, emoji, text }]: [string, any]) => [id, { text, emoji }]
-      )
-    ),
+    output: {
+      ...data,
+      options: Object.fromEntries(
+        Object.entries(data.options).map(
+          ([i, { id, emoji, text }]: [string, any]) => [id, { text, emoji }]
+        )
+      ),
+    },
+    additionalMeta: pickMetaFromJson(data),
   }
 }

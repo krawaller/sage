@@ -8,5 +8,5 @@ export const markdownProcessor: Processor<string> = async (input) => {
     /<img src="([^"]*)"/g,
     (m, src) => `<img class="${imageClass(src)}" src="${src}"`
   )
-  return html
+  return { output: html }
 }

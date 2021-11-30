@@ -25,17 +25,26 @@ export const processFile = async (
     fs.readFile(filePath),
   ])
   const content = buffer.toString()
-  const processed = await plugin.processor({
+  const { output, additionalMeta } = await plugin.processor({
     content,
     meta,
     filePath,
   })
+  const fullMeta = {
+    ...meta,
+    ...additionalMeta,
+  }
   const imports =
-    plugin.importer?.({ content, meta, filePath, processed }) ?? {}
+    plugin.importer?.({
+      content,
+      meta: fullMeta,
+      filePath,
+      processed: output,
+    }) ?? {}
   return {
     ...fileData,
-    meta,
-    processed,
+    meta: fullMeta,
+    processed: output,
     imports,
   }
 }

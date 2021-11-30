@@ -1,4 +1,5 @@
 {
+  "short": "Who are you?",
   "id": "whoareyou",
   "question": "So, JavaScript?",
   "options": [
