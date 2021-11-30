@@ -1,0 +1,8 @@
+digraph "G" {
+  rankdir="LR"
+  Reducer [shape=box]
+  State -> Reducer
+  Action -> Reducer
+  Reducer -> NewState
+  NewState [label="New state"]
+}
