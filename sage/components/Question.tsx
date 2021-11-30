@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import React, { CSSProperties, useEffect } from 'react'
+import { useSettings } from '../contexts'
 import { useCurrentAuth } from '../services/service.auth'
 import {
   useQuestionService,
@@ -17,6 +18,7 @@ export const Question: SageFileComponent<Record<string, any>> = (props) => {
   const { total, perOption } = useQuestionStats(resource.processed.id)
   const user = useCurrentAuth()
   const questionService = useQuestionService()
+  const settings = useSettings()
   useEffect(() => {
     if (user) {
       // call will fail if we're not logged in
@@ -42,6 +44,9 @@ export const Question: SageFileComponent<Record<string, any>> = (props) => {
             <div>{perOption[id] || 0}</div>
           </div>
         ))}
+      </div>
+      <div className={css.url}>
+        <a href={settings.voting.url}>{settings.voting.url}</a>
       </div>
     </div>
   )

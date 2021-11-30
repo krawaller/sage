@@ -71,6 +71,9 @@ const sageConfig: SageConfig = {
     initialCssVars: {
       zoom: 1, // initial zoom level
     },
+    voting: {
+      url: 'https://bit.ly/qday-redux-vote',
+    },
   },
 }
 
