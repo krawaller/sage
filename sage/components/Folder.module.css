@@ -1,3 +1,16 @@
 .folder {
+  text-align: center;
+}
+
+.folder > img {
+  margin-bottom: calc(4 * var(--pad));
+}
+
+.folder > h4 {
+  margin-bottom: calc(4 * var(--pad));
+}
+
+.folder > :last-child {
   display: flex;
+  justify-content: center;
 }

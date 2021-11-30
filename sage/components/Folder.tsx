@@ -5,12 +5,21 @@ import styles from './Folder.module.css'
 
 export const Folder: SageFolderComponent = (props) => {
   const { linkMap, resource } = props
-  const { contains } = resource
+  const { contains, meta } = resource
   return (
     <div className={styles.folder}>
-      {contains.map((id) => (
-        <ResourceLink key={id} link={linkMap[id]} vertical />
-      ))}
+      {meta.image && (
+        <img
+          className={meta.image.split('/').slice(-1)[0].replace(/\./g, '_')}
+          src={meta.image}
+        />
+      )}
+      {meta.title && <h4 className="bp4-heading">{meta.title}</h4>}
+      <div>
+        {contains.map((id) => (
+          <ResourceLink key={id} link={linkMap[id]} vertical />
+        ))}
+      </div>
     </div>
   )
 }
