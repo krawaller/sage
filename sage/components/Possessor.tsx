@@ -15,7 +15,7 @@ const getVar = (
   prefixes
     .map((prefix) => `--${prefix}-${prop}`)
     .map((key) => vars[key])
-    .filter((val) => val !== undefined)[0]
+    .filter((val) => val !== undefined)[0] || 0
 
 export const Possessor = (props: PossessorProps) => {
   const { prefixes, children } = props

@@ -3,11 +3,11 @@ import { useCssVars } from '../services/service.css-vars'
 
 export const useRegisterGhost = (
   elem: HTMLElement | null | undefined,
-  prefix: string
+  prefix: string | undefined
 ) => {
   const { updateCssVars } = useCssVars()
   return useCallback(() => {
-    if (elem) {
+    if (elem && prefix) {
       const { x, y, width, height } = elem.getBoundingClientRect()
       updateCssVars({
         [`--${prefix}-x`]: x,

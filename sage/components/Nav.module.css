@@ -10,5 +10,12 @@
 }
 
 .nav-files > :not(:first-child) {
-  margin-left: calc(var(--pad) * 4);
+  margin-left: calc(var(--pad) * 2);
+}
+
+.nav-highlight {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--pad);
+  background-color: rgba(143, 153, 168, 0.3);
 }
