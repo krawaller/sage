@@ -1,0 +1,21 @@
+{
+  "id": "whoareyou",
+  "question": "So, JavaScript?",
+  "options": [
+    {
+      "id": "js-dev",
+      "text": "Oh look, he's using Firebase! I'm gonna hack it",
+      "emoji": "😈"
+    },
+    {
+      "id": "backend-dev",
+      "text": "It's so cute when JS devs pretend to be real programmers",
+      "emoji": "😁"
+    },
+    {
+      "id": "other",
+      "text": "JavaScript, is that a coffee brand?",
+      "emoji": "☕"
+    }
+  ]
+}
