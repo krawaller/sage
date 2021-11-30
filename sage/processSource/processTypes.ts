@@ -39,4 +39,5 @@ export type SageLink = {
   path: string
   type: SageResource['type']
   kind: string
+  sort: number | string
 }

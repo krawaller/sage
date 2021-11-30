@@ -1,4 +1,4 @@
-const keys = ['title', 'short', 'image']
+const keys = ['title', 'short', 'image', 'sort']
 
 export const pickMetaFromJson = (json: Record<string, any>) => {
   const ret: Record<string, any> = {}

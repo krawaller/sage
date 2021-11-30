@@ -25,6 +25,11 @@ export const getLinkRecord = (
                 .join('/'),
         short:
           page.meta.short || (page.type === 'file' && page.name) || page.id,
+        sort:
+          page.meta.sort ||
+          page.meta.short ||
+          (page.type === 'file' && page.name) ||
+          page.id,
       },
     ])
   )
