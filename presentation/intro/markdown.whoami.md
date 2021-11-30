@@ -1,10 +1,9 @@
 ---
 short: 'Who am I?'
+image: 'images/me.png'
 ---
 
 ### What you need to know
-
-![Me](/images/me.png)
 
 - JS cool-aid
 - TS fanboy

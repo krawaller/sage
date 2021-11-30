@@ -18,10 +18,11 @@ body {
   display: block;
 }
 
-img.qdaylogo_svg {
-  filter: drop-shadow(grey 0px 0px 5px);
+.sage-component-image {
+  max-height: 30vh;
+  margin-bottom: calc(var(--pad) * 4);
 }
 
-img.me_png {
-  max-height: 30vh;
+img.qdaylogo_svg {
+  filter: drop-shadow(grey 0px 0px 5px);
 }
